@@ -1,0 +1,31 @@
+@import './vars.scss';
+
+.main__button {
+	padding: 15px 30px;
+	border-radius: 8px;
+	font-size: 20px;
+	color: #fff;
+	font-weight: bold;
+	background-color: $main-color-light;
+	text-align: center;
+	transition: all 0.3s ease 0s;
+}
+
+.main__button:hover {
+	background-color: $main-color-medium;
+}
+
+.secondary__button {
+	padding: 15px 30px;
+	border-radius: 8px;
+	font-size: 20px;
+	color: #fff;
+	font-weight: bold;
+	background-color: $secondary-color-dark;
+	text-align: center;
+	transition: all 0.3s ease 0s;
+}
+
+.secondary__button:hover {
+	background-color: $secondary-color-medium;
+}

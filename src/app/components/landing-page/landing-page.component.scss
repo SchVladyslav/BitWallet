@@ -1,0 +1,79 @@
+@import '../../../assets/scss/abstracts/vars.scss';
+@import '../../../assets/scss/abstracts/buttons.scss';
+
+.page-wrapper {
+	height: 100vh;
+	color: #fff;
+
+	overflow: hidden;
+	background-color: $main-color-dark;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 2rem;
+
+	padding: 20px 50px 0 50px;
+
+	&__title {
+		font-size: 24px;
+	}
+
+	&__nav {
+		.nav__list {
+			display: flex;
+			justify-content: space-between;
+
+			.main__button {
+				margin-left: 20px;
+			}
+		}
+	}
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	height: 100%;
+
+	&__title {
+		margin-bottom: 20px;
+		font-size: 42px;
+	}
+
+	&__subtitle {
+		margin-bottom: 20px;
+		font-size: 22px;
+		color: $secondary-color-grey;
+	}
+
+	.currency__list {
+		display: flex;
+		align-items: center;
+		margin-top: 20px;
+
+		li {
+			display: flex;
+
+			& + li {
+				margin-left: 40px;
+			}
+		}
+
+		.icon {
+			height: 24px;
+			width: 24px;
+			margin-right: 10px;
+		}
+
+		.percent {
+			margin-left: 10px;
+			color: $up-color;
+		}
+	}
+}
