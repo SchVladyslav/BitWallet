@@ -1,0 +1,10 @@
+@mixin button($ceil, $side, $fz, $bg-color) {
+    padding: $ceil $side;
+	border-radius: 8px;
+	font-size: $fz;
+	color: #fff;
+	font-weight: bold;
+	background-color: $bg-color;
+	text-align: center;
+	transition: all 0.3s ease 0s;
+  }

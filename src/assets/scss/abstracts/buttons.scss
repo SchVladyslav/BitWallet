@@ -1,0 +1,18 @@
+@import './vars.scss';
+@import './mixin.scss';
+
+.main__button {
+	@include button(15px, 30px, 20px, $main-color-light);
+} 
+
+.main__button:hover {
+	background-color: $main-color-medium;
+}
+
+.secondary__button {
+	@include button(10px, 20px, 16px, $secondary-color-dark);
+}
+
+.secondary__button:hover {
+	background-color: $secondary-color-medium;
+}
