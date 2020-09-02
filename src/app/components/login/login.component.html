@@ -1,1 +1,28 @@
-<p>login works!</p>
+<div class="page-wrapper">
+	<header class="header">
+		<h1 class="header__title">Bit Wallet</h1>
+	</header>
+	<main class="main">
+			<form class="form">
+				<h2 class="form__title">Welcome Back!</h2>
+				<label class="form__label" for="id">Wallet ID</label>
+				<input class="form__input" id="id" type="text">
+				<p class="form__text">Your Wallet ID can be found at the bottom of any email we’ve ever sent you. Need a reminder?</p>
+				<label class="form__label" for="pass">Password</label>
+				<input class="form__input" id="pass" type="password">
+				<button class="form__button" type="submit">Log In</button>
+			</form>
+		<a class="main__link" routerLink="/signup">Don't have a wallet? <span>Sign Up</span></a>
+	</main>
+	<footer class="footer">
+		<select class="select">
+			<option class="select__option">
+				English
+			</option>
+			<option class="select__option">
+				Ukrainian
+			</option>
+		</select>
+		<p class="footer__version">Version 5.31.21</p>
+	</footer>
+</div>
