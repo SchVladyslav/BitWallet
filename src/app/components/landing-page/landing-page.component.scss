@@ -28,6 +28,11 @@
 
 			.main__button {
 				margin-left: 20px;
+
+				&-sm {
+					padding: 10px 20px;
+					font-size: 16px;
+				}
 			}
 		}
 	}
