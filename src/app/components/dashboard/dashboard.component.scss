@@ -1,0 +1,209 @@
+@import '../../../assets/scss/abstracts/vars.scss';
+@import '../../../assets/scss/abstracts/buttons.scss';
+
+.page-wrapper {
+	display: flex;
+	flex-direction: column;
+
+	height: 100vh;
+	color: #fff;
+
+	overflow: hidden;
+}
+
+.header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 3.5rem;
+	background-color: $main-color-dark;
+	
+	&__title {
+		font-size: 24px;
+	}
+
+	.nav {
+		&__list {
+			display: flex;
+		}
+	}
+}
+
+.main {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	color: #000;
+
+	.icon {
+		height: 24px;
+		width: 24px;
+	}
+
+	.crypto__list {
+		li {
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border-radius: 8px;
+			cursor: pointer;
+
+			p {
+				margin-left: 10px;
+			}
+		}
+	}
+
+	.aside {
+		width: 100%;
+		max-width: 200px;
+		
+		&__title,
+		&__balance {
+			margin-left: 10px;
+		}
+
+		&__title {
+			font-size: 12px;
+			color: $secondary-color-grey-dark;
+		}
+
+		&__balance {
+			font-size: 24px;
+			font-weight: 600;
+		}
+
+		.crypto__list {
+			margin-top: 10px;
+			
+			.dashboard:hover {
+				background-color: $hover-color-blue;
+			}
+
+			.btc:hover {
+				background-color: $hover-color-orange;
+			}
+
+			.eth:hover {
+				background-color: $hover-color-purple;
+			}
+
+			.xrp:hover {
+				background-color: $hover-color-green;
+			}
+
+			li {				
+				& + li {
+					margin-top: 5px;
+				}
+			}
+		}
+	}
+
+	.balance,
+	.diagram {
+		width: 100%;
+		max-width: 500px;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+	}
+
+	.balance {
+
+		.title__wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		&__title {
+			color: $secondary-color-grey;
+		}
+
+		.crypto__list {
+
+			.item__wrapper {
+				display: flex;
+				align-items: center;
+			}
+
+			li {
+				justify-content: space-between;
+				padding: 20px 0;
+			}
+			
+			li:not(:last-child) {
+				border-bottom: 1px solid #ccc
+			}
+
+			.icon {
+				width: 34px;
+				height: 34px;
+			}
+
+			.details__wrapper {
+				display: flex;
+				flex-direction: column;
+				text-align: right;
+
+				.value {
+					font-size: 16px;
+				}
+
+				.amount {
+					font-size: 12px;
+					color: $secondary-color-grey-dark;					
+				}
+			}
+		}
+
+		&__value {
+			font-size: 24px;
+			font-weight: 600;
+		}
+	}
+
+	.diagram {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		text-align: center;
+
+		.time__list {
+			display: flex;
+			justify-content: center;
+
+			.button {
+				@include button(6px, 8px, 10px, $main-color-light);
+			}
+
+			li + li {
+				margin-left: 10px;
+			}
+		}
+
+		.diagram__buttons {
+			margin-top: 20px;
+			
+			.button {
+				@include button(15px, 20px, 14px, $main-color-light);
+			}
+
+			.button + .button {
+				margin-left: 20px;
+			}
+		}
+
+		&__title {
+			font-size: 10px;
+			color: $secondary-color-grey-dark;
+		}
+
+		&__price {
+			font-size: 26px;
+			color: $main-color-medium;
+		}
+	}
+}

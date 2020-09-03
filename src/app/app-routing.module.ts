@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { SignUpComponent } from './components/signup/signup.component';
 import { LogInComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'login', component: LogInComponent }
+  { path: 'login', component: LogInComponent },
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({

@@ -15,8 +15,23 @@
 }
 
 .header {
-	align-self: flex-start;
-	margin: 20px 40px;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 40px;
+	width: 100%;
+
+	&__title {
+		font-size: 24px;
+	}
+
+	.select__wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.version {
+		margin-left: 20px;
+	}
 }
 
 .main {
@@ -32,7 +47,7 @@
 		justify-content: space-evenly;
 	
 		height: 520px;
-		width: 480px;
+		width: 450px;
 	
 		padding: 20px 30px;
 		border-radius: 8px;
@@ -42,15 +57,14 @@
 	
 		&__title {
 			font-size: 20px;
+			text-align: center;
 		}
 
 		&__describtion {
-			p {
-				font-weight: 600;
-
-				span {
-					color: $secondary-color-grey-dark;
-				}
+			font-size: 14px;
+			font-weight: 600;
+			span {
+				color: $secondary-color-grey-dark;
 			}
 		}
 
@@ -93,17 +107,5 @@
 		span {
 			color: #fff;
 		}
-	}
-}
-
-.footer {
-	display: flex;
-
-	.select {
-		outline: $main-color-light;
-	}
-
-	&__version {
-		margin-left: 10px;
 	}
 }
