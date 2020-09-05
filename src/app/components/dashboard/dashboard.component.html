@@ -1,17 +1,26 @@
 <div class="page-wrapper">
 	<header class="header">
-		<h1 class="header__title">Bit Wallet</h1>
-		<nav class="nav">
-			<ul class="nav__list">
-				<li>
-					<a>Send</a>
-				</li>
-				<li>
-					<a>Request</a>
-				</li>
-			</ul>
-		</nav>
-		<a class="settings">Settings</a>
+		<div class="header__logo-wrapper">
+			<img class="icon" src="../../../assets//icons/svg/icon-Logo.svg">
+			<h1 class="header__title">BitWallet.com</h1>
+		</div>
+		<div class="header__nav-wrapper">
+			<nav class="nav">
+				<ul class="nav__list">
+					<li>
+						<img class="icon" src="../../../assets//icons/svg/icon-Send.svg" alt="Send">
+						<a class="item__text">Send</a>
+					</li>
+					<li>
+						<img class="icon" src="../../../assets//icons/svg/icon-Request.svg" alt="Request">
+						<a class="item__text">Request</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="header__settings-wrapper">
+				<img src="../../../assets//icons/svg/icon-Settings.svg" alt="Settings">
+			</div>
+		</div>
 	</header>
 	<main class="main">
 		<aside class="aside">
@@ -78,11 +87,14 @@
 
 		<section class="diagram">
 			<div class="diagram__title">
-				<select>
-					<option>Bitcoin (BTC)</option>
-					<option>Ether (ETH)</option>
-					<option>Ripple (XRP)</option>
-				</select>
+				<div class="select__wrapper">
+					<img class="select__icon" #img/>
+					<select (change)="selectChangeHandler($event)" class="select__crypto" >
+						<option *ngFor="let crypto of cryptoList" value={{crypto.ticker}}>
+							{{crypto.name}} ({{crypto.ticker}})
+						</option>
+					</select>
+				</div>
 				<h5 class="diagram__title">Current price</h5>
 				<span class="diagram__price">$11,272.89</span>
 			</div>

@@ -11,34 +11,75 @@
 	overflow: hidden;
 }
 
+.icon {
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
+}
+
 .header {
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
 	min-height: 3.5rem;
+	padding: 0 30px;
 	background-color: $main-color-dark;
 	
 	&__title {
-		font-size: 24px;
+		font-size: 18px;
+		margin-left: 10px;
+	}
+
+	.icon {
+		height: 16px;
+		width: 16px;
 	}
 
 	.nav {
 		&__list {
 			display: flex;
+
+			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			li + li {
+				margin-left: 10px;
+				padding: 0 10px;
+				border-left: 1px solid rgb(156, 156, 156);
+			}
+
+			.item__text {
+				margin-left: 10px;
+				font-size: 14px;
+				font-weight: 600;
+				color: $main-color-text;
+			}
 		}
+	}
+
+	&__nav-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-left: 70px;
+	}
+
+	&__logo-wrapper,
+	&__settings-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
 	}
 }
 
 .main {
 	display: flex;
-	justify-content: space-between;
-	padding: 20px;
+	padding: 20px 10px;
 	color: #000;
-
-	.icon {
-		height: 24px;
-		width: 24px;
-	}
 
 	.crypto__list {
 		li {
@@ -46,6 +87,9 @@
 			align-items: center;
 			padding: 10px 15px;
 			border-radius: 8px;
+			font-weight: 600;
+			color: $secondary-color-grey-dark;
+			transition: ease 0.3s;
 			cursor: pointer;
 
 			p {
@@ -56,11 +100,11 @@
 
 	.aside {
 		width: 100%;
-		max-width: 200px;
+		max-width: 220px;
 		
 		&__title,
 		&__balance {
-			margin-left: 10px;
+			margin-left: 15px;
 		}
 
 		&__title {
@@ -103,14 +147,15 @@
 	.balance,
 	.diagram {
 		width: 100%;
-		max-width: 500px;
+		max-width: 600px;
 		padding: 20px;
 		border: 1px solid #ccc;
 		border-radius: 8px;
 	}
 
 	.balance {
-
+		margin-left: 30px;
+		
 		.title__wrapper {
 			display: flex;
 			justify-content: space-between;
@@ -170,13 +215,39 @@
 		justify-content: space-between;
 		align-items: center;
 		text-align: center;
+		margin: 0 40px 0 30px;
+
+		.select__wrapper {
+			display: flex;
+			justify-content: center;
+		}
+
+		.select__icon {
+			width: 24px;
+			height: 24px;
+			margin-right: 5px;
+		}
+
+		.select__crypto {
+			color: #000;
+			font-size: 18px;
+			margin-bottom: 15px;
+		}
 
 		.time__list {
 			display: flex;
 			justify-content: center;
 
 			.button {
-				@include button(6px, 8px, 10px, $main-color-light);
+				@include button(6px, 8px, 10px, #fff);
+				color: $secondary-color-grey-dark;
+				border: 1px solid $secondary-color-grey-dark;
+			}
+
+			.button:hover {
+				color: #fff;
+				background-color: $main-color-light;
+				border-color: $main-color-light;
 			}
 
 			li + li {
@@ -188,7 +259,7 @@
 			margin-top: 20px;
 			
 			.button {
-				@include button(15px, 20px, 14px, $main-color-light);
+				@include button(15px, 40px, 14px, $main-color-button);
 			}
 
 			.button + .button {
