@@ -2,6 +2,7 @@
 @import '../../../assets/scss/abstracts/buttons.scss';
 
 .page-wrapper {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 
@@ -35,6 +36,8 @@
 	}
 
 	.nav {
+		transition: ease 0.3s;
+
 		&__list {
 			display: flex;
 
@@ -42,12 +45,17 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				transition: ease 0.3s;
 			}
 
 			li + li {
 				margin-left: 10px;
 				padding: 0 10px;
 				border-left: 1px solid rgb(156, 156, 156);
+			}
+
+			a:hover {
+				color: $secondary-color-grey-dark;
 			}
 
 			.item__text {
@@ -216,23 +224,6 @@
 		align-items: center;
 		text-align: center;
 		margin: 0 40px 0 30px;
-
-		.select__wrapper {
-			display: flex;
-			justify-content: center;
-		}
-
-		.select__icon {
-			width: 24px;
-			height: 24px;
-			margin-right: 5px;
-		}
-
-		.select__crypto {
-			color: #000;
-			font-size: 18px;
-			margin-bottom: 15px;
-		}
 
 		.time__list {
 			display: flex;

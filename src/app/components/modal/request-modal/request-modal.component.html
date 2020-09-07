@@ -1,0 +1,33 @@
+<div class="modal__wrapper">
+	<header class="modal__header">
+		<div class="modal__header-wrapper">
+			<img class="icon" src="../../../../assets/icons/svg/icon-Request.svg">
+			<h1 class="modal__header-title">Request Bitcoin</h1>
+		</div>
+		<button class="modal__header-close" (click)="closeModal()">X</button>
+	</header>
+	<main class="modal">
+		<div class="block-wrapper">
+			<div class="modal__block-wrapper">
+				<label class="modal__label">Currency</label>
+				<app-select-currency></app-select-currency>
+			</div>
+			<div class="modal__block-wrapper">
+				<label class="modal__label">Receive To</label>
+				<app-select-currency></app-select-currency>
+			</div>
+		</div>
+		<label class="modal__label" for="address">Address</label>
+		<input class="modal__input" id="address" type="text"/>
+		<label class="modal__label" for="amount">Amount</label>
+		<div class="modal__amount-wrapper">
+			<input class="modal__input modal__amount" id="amount" type="text" placeholder="$0.00">
+			<span class="modal__sign">=</span>
+			<input class="modal__input modal__currency" type="text" placeholder="0">
+		</div>
+		<label class="modal__label" for="desc">Description</label>
+		<textarea class="modal__input modal__description" id="desc" rows="3" placeholder="What's this transaction for? (optional)"></textarea>
+		<button class="modal__button">Done</button>
+	</main>
+</div>
+<div class="bg-layout"></div>

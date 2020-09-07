@@ -7,11 +7,11 @@
 		<div class="header__nav-wrapper">
 			<nav class="nav">
 				<ul class="nav__list">
-					<li>
+					<li (click)="openSendModal()">
 						<img class="icon" src="../../../assets//icons/svg/icon-Send.svg" alt="Send">
 						<a class="item__text">Send</a>
 					</li>
-					<li>
+					<li (click)="openRequestModal()">
 						<img class="icon" src="../../../assets//icons/svg/icon-Request.svg" alt="Request">
 						<a class="item__text">Request</a>
 					</li>
@@ -87,14 +87,7 @@
 
 		<section class="diagram">
 			<div class="diagram__title">
-				<div class="select__wrapper">
-					<img class="select__icon" #img/>
-					<select (change)="selectChangeHandler($event)" class="select__crypto" >
-						<option *ngFor="let crypto of cryptoList" value={{crypto.ticker}}>
-							{{crypto.name}} ({{crypto.ticker}})
-						</option>
-					</select>
-				</div>
+				<app-select-currency></app-select-currency>
 				<h5 class="diagram__title">Current price</h5>
 				<span class="diagram__price">$11,272.89</span>
 			</div>

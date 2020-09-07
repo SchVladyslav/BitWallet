@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CryptoList } from '../../interfaces/CryptoList';
+import { Component, OnInit } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { SendModalComponent } from '../modal/send-modal/send-modal.component';
+import { RequestModalComponent } from '../modal/request-modal/request-modal.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,34 +9,18 @@ import { CryptoList } from '../../interfaces/CryptoList';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  cryptoList: CryptoList[];
-  selectedCrypto: string;
-  @ViewChild('img', {static: false}) image;
+  bsModalRef: BsModalRef;
 
-  constructor() { }
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.cryptoList = [
-      {name: 'Bitcoin', ticker: 'BTC', imageUrl: '../../../assets/icons/svg/icon-Bitcoin.svg'}, 
-      {name: 'Ether', ticker: 'ETH', imageUrl: '../../../assets/icons/svg/icon-Ethereum.svg'},
-      {name: 'Ripple', ticker: 'XRP', imageUrl: '../../../assets/icons/svg/icon-Xrp.svg'}
-    ];
   }
 
-  ngAfterViewInit() {
-    this.image.nativeElement.src = this.cryptoList[0].imageUrl;
+  public openSendModal(): void {
+    this.bsModalRef = this.modalService.show(SendModalComponent);
   }
 
-  selectChangeHandler($event: any): void {
-    this.selectedCrypto = $event.target.value;
-    this.changeCryptoImage(this.selectedCrypto);
-  }
-
-  changeCryptoImage(selectedCrypto) {
-    for (const crypto of this.cryptoList) {
-     if (selectedCrypto === crypto.ticker) {
-      this.image.nativeElement.src = crypto.imageUrl;
-     }
-    }
+  public openRequestModal(): void {
+    this.bsModalRef = this.modalService.show(RequestModalComponent);
   }
 }
