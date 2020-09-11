@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SendModalComponent } from './components/modal/send-modal/send-modal.component';
 import { SelectCurrencyComponent } from './shared/select-currency/select-currency.component';
 import { RequestModalComponent } from './components/modal/request-modal/request-modal.component';
+import { SettingsDropdownComponent } from './shared/dropdown/settings-dropdown/settings-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RequestModalComponent } from './components/modal/request-modal/request-
     DashboardComponent,
     SendModalComponent,
     SelectCurrencyComponent,
-    RequestModalComponent
+    RequestModalComponent,
+    SettingsDropdownComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { RequestModalComponent } from './components/modal/request-modal/request-
   ],
   entryComponents: [
     SendModalComponent,
-    RequestModalComponent
+    RequestModalComponent,
+    SettingsDropdownComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

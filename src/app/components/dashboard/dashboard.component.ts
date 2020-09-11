@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SendModalComponent } from '../modal/send-modal/send-modal.component';
 import { RequestModalComponent } from '../modal/request-modal/request-modal.component';
+import { SettingsDropdownComponent } from 'src/app/shared/dropdown/settings-dropdown/settings-dropdown.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,5 +23,9 @@ export class DashboardComponent implements OnInit {
 
   public openRequestModal(): void {
     this.bsModalRef = this.modalService.show(RequestModalComponent);
+  }
+
+  public openDropdown(): void {
+    this.bsModalRef = this.modalService.show(SettingsDropdownComponent);
   }
 }
