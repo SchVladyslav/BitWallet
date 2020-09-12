@@ -1,0 +1,8 @@
+<div class="select__wrapper">
+    <img class="select__icon" #img/>
+    <select (change)="selectChangeHandler($event)" class="select__crypto" >
+        <option *ngFor="let crypto of cryptoList" value={{crypto.ticker}}>
+            {{crypto.name}} ({{crypto.ticker}})
+        </option>
+    </select>
+</div>

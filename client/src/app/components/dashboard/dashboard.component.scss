@@ -1,0 +1,271 @@
+@import '../../../assets/scss/abstracts/vars.scss';
+@import '../../../assets/scss/abstracts/buttons.scss';
+
+.page-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	height: 100vh;
+	color: #fff;
+
+	overflow: hidden;
+}
+
+.icon {
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	min-height: 3.5rem;
+	padding: 0 30px;
+	background-color: $main-color-dark;
+	
+	&__title {
+		font-size: 18px;
+		margin-left: 10px;
+	}
+
+	.icon {
+		height: 16px;
+		width: 16px;
+	}
+
+	.nav {
+		transition: ease 0.3s;
+
+		&__list {
+			display: flex;
+
+			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				transition: ease 0.3s;
+			}
+
+			li + li {
+				margin-left: 10px;
+				padding: 0 10px;
+				border-left: 1px solid rgb(156, 156, 156);
+			}
+
+			a:hover {
+				color: $secondary-color-grey-dark;
+			}
+
+			.item__text {
+				margin-left: 10px;
+				font-size: 14px;
+				font-weight: 600;
+				color: $main-color-text;
+			}
+		}
+	}
+
+	&__nav-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-left: 70px;
+	}
+
+	&__logo-wrapper,
+	&__settings-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+}
+
+.main {
+	display: flex;
+	padding: 20px 10px;
+	color: #000;
+
+	.crypto__list {
+		li {
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border-radius: 8px;
+			font-weight: 600;
+			color: $secondary-color-grey-dark;
+			transition: ease 0.3s;
+			cursor: pointer;
+
+			p {
+				margin-left: 10px;
+			}
+		}
+	}
+
+	.aside {
+		width: 100%;
+		max-width: 220px;
+		
+		&__title,
+		&__balance {
+			margin-left: 15px;
+		}
+
+		&__title {
+			font-size: 12px;
+			color: $secondary-color-grey-dark;
+		}
+
+		&__balance {
+			font-size: 24px;
+			font-weight: 600;
+		}
+
+		.crypto__list {
+			margin-top: 10px;
+			
+			.dashboard:hover {
+				background-color: $hover-color-blue;
+			}
+
+			.btc:hover {
+				background-color: $hover-color-orange;
+			}
+
+			.eth:hover {
+				background-color: $hover-color-purple;
+			}
+
+			.xrp:hover {
+				background-color: $hover-color-green;
+			}
+
+			li {				
+				& + li {
+					margin-top: 5px;
+				}
+			}
+		}
+	}
+
+	.balance,
+	.diagram {
+		width: 100%;
+		max-width: 600px;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+	}
+
+	.balance {
+		margin-left: 30px;
+		
+		.title__wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		&__title {
+			color: $secondary-color-grey;
+		}
+
+		.crypto__list {
+
+			.item__wrapper {
+				display: flex;
+				align-items: center;
+			}
+
+			li {
+				justify-content: space-between;
+				padding: 20px 0;
+			}
+			
+			li:not(:last-child) {
+				border-bottom: 1px solid #ccc
+			}
+
+			.icon {
+				width: 34px;
+				height: 34px;
+			}
+
+			.details__wrapper {
+				display: flex;
+				flex-direction: column;
+				text-align: right;
+
+				.value {
+					font-size: 16px;
+				}
+
+				.amount {
+					font-size: 12px;
+					color: $secondary-color-grey-dark;					
+				}
+			}
+		}
+
+		&__value {
+			font-size: 24px;
+			font-weight: 600;
+		}
+	}
+
+	.diagram {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		text-align: center;
+		margin: 0 40px 0 30px;
+
+		.time__list {
+			display: flex;
+			justify-content: center;
+
+			.button {
+				@include button(6px, 8px, 10px, #fff);
+				color: $secondary-color-grey-dark;
+				border: 1px solid $secondary-color-grey-dark;
+			}
+
+			.button:hover {
+				color: #fff;
+				background-color: $main-color-light;
+				border-color: $main-color-light;
+			}
+
+			li + li {
+				margin-left: 10px;
+			}
+		}
+
+		.diagram__buttons {
+			margin-top: 20px;
+			
+			.button {
+				@include button(15px, 40px, 14px, $main-color-button);
+			}
+
+			.button + .button {
+				margin-left: 20px;
+			}
+		}
+
+		&__title {
+			font-size: 10px;
+			color: $secondary-color-grey-dark;
+		}
+
+		&__price {
+			font-size: 26px;
+			color: $main-color-medium;
+		}
+	}
+}
