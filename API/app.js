@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const bodyParser = require('body-parser'); // for expres to proper parse json data
 const cors = require('cors');   // to process client with diff domain address
 const morgan = require('morgan'); // logging
@@ -13,6 +14,9 @@ mongoose.connect(keys.MONGO_URI)
     console.log('MongoDB is connected');
 })
 .catch(error => console.log(error));
+
+app.use(passport.initialize());
+require('./middleware/passport')(passport);
 
 app.use(morgan('dev'));
 app.use(cors());

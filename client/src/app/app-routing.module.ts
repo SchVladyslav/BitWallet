@@ -4,7 +4,6 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { SignUpComponent } from './components/signup/signup.component';
 import { LogInComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SendModalComponent } from './components/modal/send-modal/send-modal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
