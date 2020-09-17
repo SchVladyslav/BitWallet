@@ -1,0 +1,16 @@
+<form class="form" [formGroup]="form" (ngOnSumbit)="onSubmit()">
+	<div class="form__group">
+		<label class="form__label" for="email">Your Email</label>
+		<input class="form__input" formControlName="email" id="email" type="email">
+	</div>
+	<div class="form__group">
+		<label class="form__label" for="password">Password</label>
+		<input class="form__input" formControlName="password" id="password" type="password">
+	</div>
+	<div class="form__group">
+		<label class="form__label" for="confirmPassword">Confirm Password</label>
+		<input class="form__input" formControlName="confirmPassword" id="confirmPassword" type="password">
+	</div>
+	<p class="form__text">By creating an account, you agree to Blockchain’s <a routerLink='/'>Terms of Service</a> & <a routerLink='/'>Privacy Policy.</a></p>
+	<button class="form__button" [disabled]="form.invalid" type="submit">Create Wallet</button>
+</form>

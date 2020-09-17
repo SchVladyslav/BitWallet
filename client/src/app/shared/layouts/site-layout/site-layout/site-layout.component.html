@@ -1,1 +1,23 @@
+<div class="page-wrapper">
+	<header class="header">
+		<app-logo></app-logo>
+		<div class="header__nav-wrapper">
+			<nav class="nav">
+				<ul class="nav__list">
+					<li (click)="openSendModal()">
+						<img class="icon" src="../../../assets//icons/svg/icon-Send.svg" alt="Send">
+						<a class="item__text">Send</a>
+					</li>
+					<li (click)="openRequestModal()">
+						<img class="icon" src="../../../assets//icons/svg/icon-Request.svg" alt="Request">
+						<a class="item__text">Request</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="header__settings-wrapper">
+				<img (click)="openDropdown()" src="../../../assets//icons/svg/icon-Settings.svg" alt="Settings">
+			</div>
+		</div>
+	</header>
 <router-outlet></router-outlet>
+</div>

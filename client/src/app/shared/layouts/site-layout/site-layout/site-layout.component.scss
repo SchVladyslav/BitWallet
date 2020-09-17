@@ -1,0 +1,78 @@
+@import '../../../../../assets/scss/abstracts/vars.scss';
+
+.page-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	height: 100vh;
+	color: #fff;
+
+	overflow: hidden;
+}
+
+.icon {
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	min-height: 3.5rem;
+	padding: 0 30px;
+	background-color: $main-color-dark;
+	
+	.icon {
+		height: 16px;
+		width: 16px;
+	}
+
+	.nav {
+		transition: ease 0.3s;
+
+		&__list {
+			display: flex;
+
+			li {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				transition: ease 0.3s;
+			}
+
+			li + li {
+				margin-left: 10px;
+				padding: 0 10px;
+				border-left: 1px solid rgb(156, 156, 156);
+			}
+
+			a:hover {
+				color: $secondary-color-grey-dark;
+			}
+
+			.item__text {
+				margin-left: 10px;
+				font-size: 14px;
+				font-weight: 600;
+				color: $main-color-text;
+			}
+		}
+	}
+
+	&__nav-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-left: 70px;
+	}
+
+	&__settings-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+}

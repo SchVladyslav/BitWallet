@@ -5,6 +5,7 @@ import { SignUpComponent } from './components/signup/signup.component';
 import { LogInComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout/auth-layout.component';
+import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout/site-layout.component';
 
 const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
     { path: 'login', component: LogInComponent },
     { path: 'signup', component: SignUpComponent },
   ] },
-  { path: 'dashboard', component: AuthLayoutComponent, children: [
+  { path: '', component: SiteLayoutComponent, children: [
     { path: 'dashboard', component: DashboardComponent },
   ]},
 ];
