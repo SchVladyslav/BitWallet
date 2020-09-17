@@ -14,26 +14,6 @@
 	background-color: $main-color-medium;
 }
 
-.header {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px 40px;
-	width: 100%;
-
-	&__title {
-		font-size: 24px;
-	}
-
-	.select__wrapper {
-		display: flex;
-		align-items: center;
-	}
-
-	.version {
-		margin-left: 20px;
-	}
-}
-
 .main {
 	display: flex;
 	flex-direction: column;

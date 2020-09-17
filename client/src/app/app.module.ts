@@ -12,6 +12,8 @@ import { SendModalComponent } from './components/modal/send-modal/send-modal.com
 import { SelectCurrencyComponent } from './shared/select-currency/select-currency.component';
 import { RequestModalComponent } from './components/modal/request-modal/request-modal.component';
 import { SettingsDropdownComponent } from './shared/dropdown/settings-dropdown/settings-dropdown.component';
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout/auth-layout.component';
+import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout/site-layout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SettingsDropdownComponent } from './shared/dropdown/settings-dropdown/s
     SendModalComponent,
     SelectCurrencyComponent,
     RequestModalComponent,
-    SettingsDropdownComponent
+    SettingsDropdownComponent,
+    AuthLayoutComponent,
+    SiteLayoutComponent
   ],
   imports: [
     BrowserModule,
