@@ -1,32 +1,35 @@
 <form class="form" [formGroup]="form" (ngOnSumbit)="onSubmit()">
     <div class="form__group">
+			<div class="label__group">
         <label class="form__label" for="id">Wallet ID</label>
-        <input 
-            class="form__input"
-            formControlName="wallet" 
-            id="id" 
-            type="text"
-            [ngClass]="{'invalid': form.get('wallet').invalid && form.get('wallet').touched}"
-        >
         <span *ngIf="form.get('wallet').invalid && form.get('wallet').touched" class="form__validation">
-            <span *ngIf="form.get('wallet').errors['required']">Email is required.</span>
-            <span *ngIf="form.get('wallet').errors['wallet']">Wallet length must be 16 symbols.</span>
-        </span>
+            <span *ngIf="form.get('wallet').errors['required']">Required</span>
+            <span *ngIf="form.get('wallet').errors['minlength']">Invalid Wallet ID</span>
+				</span>
+			</div>
+      <input 
+        class="form__input"
+        formControlName="wallet" 
+        id="id" 
+        type="text"
+        [ngClass]="{'invalid': form.get('wallet').invalid && form.get('wallet').touched}"
+      >
     </div>
     <p class="form__text">Your Wallet ID can be found at the bottom of any email we’ve ever sent you. Need a reminder?</p>
     <div class="form__group">
+			<div class="label__group">
         <label class="form__label" for="pass">Password</label>
-        <input 
-            class="form__input" 
-            formControlName="password" 
-            id="pass" 
-            type="password"
-            [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
-        >
         <span *ngIf="form.get('password').invalid && form.get('password').touched" class="form__validation">
-            <span *ngIf="form.get('password').errors['required']">Password is required.</span>
-            <span *ngIf="form.get('password').errors['password']">Password length must be at least 6 symbols.</span>
-        </span>			
+            <span *ngIf="form.get('password').errors['required']">Required</span>
+				</span>
+			</div>
+      <input 
+        class="form__input" 
+        formControlName="password" 
+        id="pass" 
+        type="password"
+        [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+      >		
     </div>
     <button class="form__button" [disabled]="form.invalid" type="submit">Log In</button>
 </form>

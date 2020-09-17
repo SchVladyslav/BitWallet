@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       wallet: new FormControl(null, [Validators.required, Validators.minLength(16), Validators.maxLength(16)]), // 1-st param - get from storage wallet id
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)])
+      password: new FormControl(null, [Validators.required])
     });
   }
 
