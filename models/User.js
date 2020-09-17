@@ -13,7 +13,6 @@ const userSchema = new Schema({
     },
     wallet: {
         type: String,
-        required: true,
         unique: true
     },
     balance: [

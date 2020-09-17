@@ -4,14 +4,18 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { SignUpComponent } from './components/signup/signup.component';
 import { LogInComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SendModalComponent } from './components/modal/send-modal/send-modal.component';
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout/auth-layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
-  { path: 'landing-page', component: LandingPageComponent },
-  { path: 'signup', component: SignUpComponent },
-  { path: 'login', component: LogInComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'welcome', component: LandingPageComponent },
+  { path: '', component: AuthLayoutComponent, children: [
+    { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+    { path: 'login', component: LogInComponent },
+    { path: 'signup', component: SignUpComponent },
+  ] },
+  { path: 'dashboard', component: AuthLayoutComponent, children: [
+    { path: 'dashboard', component: DashboardComponent },
+  ]},
 ];
 
 @NgModule({
