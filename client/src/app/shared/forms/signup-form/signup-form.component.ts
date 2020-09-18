@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss']
 })
-export class SignupFormComponent implements OnInit {
+export class SignupFormComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
+  sub: Subscription;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -20,8 +27,28 @@ export class SignupFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
 
+  onSubmit() {
+    this.form.disable();
+    this.sub = this.authService.signup(this.form.value)
+    .subscribe(
+      () => {
+        this.router.navigate(['/login'], {
+          queryParams: {
+            registered: true
+          }
+        });
+      },
+      (error) => {
+        console.error(error);
+        this.form.enable();
+      }
+    );
   }
 
 }

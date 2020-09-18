@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="form" (ngOnSumbit)="onSubmit()">
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form__group">
 			<div class="label__group">
         <label class="form__label" for="id">Wallet ID</label>
@@ -31,5 +31,5 @@
         [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
       >		
     </div>
-    <button class="form__button" [disabled]="form.invalid" type="submit">Log In</button>
+    <button class="form__button" [disabled]="form.invalid || form.disabled" type="submit">Log In</button>
 </form>

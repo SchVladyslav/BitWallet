@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="form" (ngOnSumbit)="onSubmit()">
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
 	<div class="form__group">
 		<div class="label__group">
 			<label class="form__label" for="email">Your Email</label>
@@ -52,5 +52,5 @@
 		>		
 	</div>
 	<p class="form__text">By creating an account, you agree to Blockchain’s <a routerLink='/'>Terms of Service</a> & <a routerLink='/'>Privacy Policy.</a></p>
-	<button class="form__button" [disabled]="form.invalid" type="submit">Create Wallet</button>
+	<button class="form__button" [disabled]="form.invalid || form.disabled" type="submit">Create Wallet</button>
 </form>
