@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RequestModalComponent } from 'src/app/components/modal/request-modal/request-modal.component';
 import { SendModalComponent } from 'src/app/components/modal/send-modal/send-modal.component';
 import { SettingsDropdownComponent } from 'src/app/shared/dropdown/settings-dropdown/settings-dropdown.component';
+import { NavigationList } from '../../../../interfaces/NavigationList';
 
 @Component({
   selector: 'app-site-layout',
@@ -12,6 +13,12 @@ import { SettingsDropdownComponent } from 'src/app/shared/dropdown/settings-drop
 export class SiteLayoutComponent implements OnInit {
 
   bsModalRef: BsModalRef;
+  links: NavigationList[] = [
+    {url: '/dashboard', name: 'Dashboard', ticker: 'dashboard', img: '../../../assets/icons/svg/icon-dashboard.svg'},
+    {url: '/btc', name: 'Bitcoin', ticker: 'btc', img: '../../../assets/icons/svg/icon-Bitcoin.svg'},
+    {url: '/ether', name: 'Ether', ticker: 'eth', img: '../../../assets/icons/svg/icon-Ethereum.svg'},
+    {url: '/ripple', name: 'Ripple', ticker: 'xrp', img: '../../../assets/icons/svg/icon-Xrp.svg'},
+  ];
 
   constructor(private modalService: BsModalService) { }
 

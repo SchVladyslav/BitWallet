@@ -7,138 +7,80 @@
 	cursor: pointer;
 }
 
-.main {
+.content-wrapper {
 	display: flex;
-	padding: 20px 10px;
-	color: #000;
+}
+
+.balance,
+.diagram {
+	width: 100%;
+	width: 500px;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+
+.balance {
+	margin-left: 30px;
+		
+	.title__wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__title {
+			color: $secondary-color-grey;
+	}
 
 	.crypto__list {
-		li {
-			display: flex;
-			align-items: center;
-			padding: 10px 15px;
-			border-radius: 8px;
-			font-weight: 600;
-			color: $secondary-color-grey-dark;
-			transition: ease 0.3s;
-			cursor: pointer;
+	.item__wrapper {
+		display: flex;
+		align-items: center;
+	}
 
-			p {
-				margin-left: 10px;
-			}
+	.item__wrapper {
+		p {
+			margin-left: 10px;
 		}
 	}
 
-	.aside {
-		width: 100%;
-		max-width: 220px;
-		
-		&__title,
-		&__balance {
-			margin-left: 15px;
-		}
-
-		&__title {
-			font-size: 12px;
-			color: $secondary-color-grey-dark;
-		}
-
-		&__balance {
-			font-size: 24px;
-			font-weight: 600;
-		}
-
-		.crypto__list {
-			margin-top: 10px;
+	li {
+		display: flex;
+		justify-content: space-between;
+		padding: 20px 0;
+	}
 			
-			.dashboard:hover {
-				background-color: $hover-color-blue;
-			}
-
-			.btc:hover {
-				background-color: $hover-color-orange;
-			}
-
-			.eth:hover {
-				background-color: $hover-color-purple;
-			}
-
-			.xrp:hover {
-				background-color: $hover-color-green;
-			}
-
-			li {				
-				& + li {
-					margin-top: 5px;
-				}
-			}
-		}
+	li:not(:last-child) {
+		border-bottom: 1px solid #ccc
 	}
 
-	.balance,
-	.diagram {
-		width: 100%;
-		max-width: 600px;
-		padding: 20px;
-		border: 1px solid #ccc;
-		border-radius: 8px;
+	.icon {
+		width: 34px;
+		height: 34px;
 	}
 
-	.balance {
-		margin-left: 30px;
-		
-		.title__wrapper {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+	.details__wrapper {
+		display: flex;
+		flex-direction: column;
+		text-align: right;
+
+		.value {
+			font-size: 16px;
 		}
 
-		&__title {
-			color: $secondary-color-grey;
-		}
-
-		.crypto__list {
-
-			.item__wrapper {
-				display: flex;
-				align-items: center;
-			}
-
-			li {
-				justify-content: space-between;
-				padding: 20px 0;
-			}
-			
-			li:not(:last-child) {
-				border-bottom: 1px solid #ccc
-			}
-
-			.icon {
-				width: 34px;
-				height: 34px;
-			}
-
-			.details__wrapper {
-				display: flex;
-				flex-direction: column;
-				text-align: right;
-
-				.value {
-					font-size: 16px;
-				}
-
-				.amount {
-					font-size: 12px;
-					color: $secondary-color-grey-dark;					
-				}
-			}
-		}
+	.amount {
+		font-size: 12px;
+		color: $secondary-color-grey-dark;					
+	}
+}
+}
 
 		&__value {
 			font-size: 24px;
 			font-weight: 600;
 		}
-	}
+}
 
 	.diagram {
 		display: flex;
@@ -191,4 +133,3 @@
 			color: $main-color-medium;
 		}
 	}
-}

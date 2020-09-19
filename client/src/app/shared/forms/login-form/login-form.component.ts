@@ -37,7 +37,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       } else if (params['accessDenied']) {
         this.notificationService.show('Authorization is required!', 'error');
       } else if (params['sessionExpired']) {
-        this.notificationService.show('Please login again.');
+        this.notificationService.show('Please, login again.');
       }
     });
   }

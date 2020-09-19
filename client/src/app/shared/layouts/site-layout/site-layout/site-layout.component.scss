@@ -2,8 +2,6 @@
 
 .page-wrapper {
 	position: relative;
-	display: flex;
-	flex-direction: column;
 
 	height: 100vh;
 	color: #fff;
@@ -15,6 +13,29 @@
 	height: 24px;
 	width: 24px;
 	cursor: pointer;
+}
+
+.main {
+	display: flex;
+	padding: 20px 10px;
+	color: #000;
+
+	.crypto__list {
+		li {
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border-radius: 8px;
+			font-weight: 600;
+			color: $secondary-color-grey-dark;
+			transition: ease 0.3s;
+			cursor: pointer;
+
+			p {
+				margin-left: 10px;
+			}
+		}
+	}
 }
 
 .header {
@@ -74,5 +95,53 @@
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
+	}
+}
+
+.aside {
+	width: 100%;
+	max-width: 220px;
+	
+	&__title,
+	&__balance {
+		margin-left: 15px;
+	}
+
+	&__title {
+		font-size: 12px;
+		color: $secondary-color-grey-dark;
+	}
+
+	&__balance {
+		font-size: 24px;
+		font-weight: 600;
+	}
+
+	.crypto__list {
+		margin-top: 10px;
+		
+		.dashboard:hover,
+		.dashboard.active {
+			background-color: $hover-color-blue;
+		}
+
+		.btc:hover,
+		.btc.active {
+			background-color: $hover-color-orange;
+		}
+
+		.eth:hover {
+			background-color: $hover-color-purple;
+		}
+
+		.xrp:hover {
+			background-color: $hover-color-green;
+		}
+
+		li {				
+			& + li {
+				margin-top: 5px;
+			}
+		}
 	}
 }

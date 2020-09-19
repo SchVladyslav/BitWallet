@@ -19,5 +19,22 @@
 			</div>
 		</div>
 	</header>
-<router-outlet></router-outlet>
+	<main class="main">
+		<aside class="aside">
+			<h6 class="aside__title">Total Balance</h6>
+			<span class="aside__balance">$4,160.63</span>
+			<ul class="crypto__list">
+				<li 
+					*ngFor="let link of links" 
+					[routerLink]="[link.url]"
+					routerLinkActive="active"
+					class={{link.ticker}}
+				>
+					<img class="icon" src={{link.img}} alt={{link.name}}>
+					<p>{{link.name}}</p>
+				</li>			
+			</ul>
+		</aside>
+		<router-outlet></router-outlet>
+	</main>
 </div>
