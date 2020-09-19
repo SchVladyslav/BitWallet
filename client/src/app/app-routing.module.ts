@@ -6,6 +6,7 @@ import { LogInComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout/auth-layout.component';
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout/site-layout.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
     { path: 'login', component: LogInComponent },
     { path: 'signup', component: SignUpComponent },
   ] },
-  { path: '', component: SiteLayoutComponent, children: [
+  { path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
     { path: 'dashboard', component: DashboardComponent },
   ]},
 ];

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-signup-form',
@@ -16,6 +17,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
+    private notificationService: NotificationService,
     private router: Router
   ) { }
 
@@ -45,7 +47,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
         });
       },
       (error) => {
-        console.error(error);
+        this.notificationService.show(error.error.message, 'error');
         this.form.enable();
       }
     );

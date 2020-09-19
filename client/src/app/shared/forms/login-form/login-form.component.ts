@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NotificationService } from 'src/app/services/notification.service';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -12,11 +13,12 @@ import { AuthService } from '../../../services/auth.service';
 export class LoginFormComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
-  sub: Subscription; // responsible for memory leak
+  sub: Subscription; // responsible for preserving memory leak
   walletID: string;
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
+    private notificationService: NotificationService, 
     private router: Router, // for redirect to dashboard
     private route: ActivatedRoute  
   ) {}
@@ -31,9 +33,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-
+        this.notificationService.show('You can login now.');
       } else if (params['accessDenied']) {
-
+        this.notificationService.show('Authorization is required!', 'error');
+      } else if (params['sessionExpired']) {
+        this.notificationService.show('Please login again.');
       }
     });
   }
@@ -48,11 +52,10 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.form.disable();
 
     this.sub = this.authService.login(this.form.value)
-    .subscribe(() => {
-        this.router.navigate(['/dashboard']);
-      },
+    .subscribe(
+      () => this.router.navigate(['/dashboard']),
       (error) => {
-        console.error(error);
+        this.notificationService.show(error.error.message, 'error');
         this.form.enable();     
       }
     );

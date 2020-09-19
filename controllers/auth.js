@@ -10,7 +10,7 @@ module.exports.login = async function(req, res) {
 	const notFoundStatus = 404;
 	const notFoundMessage = "Client was not found!";
 	const unauthStatus = 401;
-	const unauthMessage = "Passwords weren't matched!";
+	const unauthMessage = "Incorrect password. Try again.";
 	const expiresInNumber = 60 * 60; 
 
 	if (isUserExist) {

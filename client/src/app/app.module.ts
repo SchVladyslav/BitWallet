@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,8 @@ import { LogoComponent } from './shared/logo/logo/logo.component';
 import { SelectLangComponent } from './shared/select-lang/select-lang/select-lang.component';
 import { LoginFormComponent } from './shared/forms/login-form/login-form.component';
 import { SignupFormComponent } from './shared/forms/signup-form/signup-form.component';
+import { Interceptor } from './interceptor/interceptor';
+import { NotificationModalComponent } from './components/modal/notification-modal/notification-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { SignupFormComponent } from './shared/forms/signup-form/signup-form.comp
     LogoComponent,
     SelectLangComponent,
     LoginFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    NotificationModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,14 +48,21 @@ import { SignupFormComponent } from './shared/forms/signup-form/signup-form.comp
     ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   entryComponents: [
     SendModalComponent,
     RequestModalComponent,
-    SettingsDropdownComponent
+    SettingsDropdownComponent,
+    NotificationModalComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: Interceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
