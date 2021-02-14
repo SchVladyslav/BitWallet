@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-signup-form',
@@ -18,7 +19,8 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private notificationService: NotificationService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class SignupFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.form.disable();
+    this.spinner.show();
     this.sub = this.authService.signup(this.form.value)
     .subscribe(
       () => {
@@ -47,8 +49,8 @@ export class SignupFormComponent implements OnInit, OnDestroy {
         });
       },
       (error) => {
+        this.spinner.hide();
         this.notificationService.show(error.error.message, 'error');
-        this.form.enable();
       }
     );
   }

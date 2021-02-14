@@ -6,7 +6,8 @@ const cors = require('cors');   // to process client with diff domain address
 const morgan = require('morgan'); // logging
 const authRoutes = require('./routes/auth');
 const analyticsRoutes = require('./routes/analytics');
-const keys = require('./config/keys');
+const blockchain = require('./routes/blockchain');
+const keys = require('./helper/keys');
 const app = express();
 
 mongoose.connect(keys.MONGO_URI)
@@ -25,5 +26,6 @@ app.use(bodyParser.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/blockchain', blockchain);
 
 module.exports = app;

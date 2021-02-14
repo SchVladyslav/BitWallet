@@ -31,5 +31,13 @@
         [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
       >		
     </div>
-    <button class="form__button" [disabled]="form.invalid || form.disabled" type="submit">Log In</button>
+    <button class="form__button" [disabled]="form.invalid || form.disabled" type="submit">Log In
+      <ngx-spinner
+      bdColor="rgba(255, 255, 255, 0.5)"
+      color = "var($main-color-button)"
+      size="medium"
+      type="line-scale"
+      [fullScreen]="false"
+      ></ngx-spinner>
+    </button>
 </form>

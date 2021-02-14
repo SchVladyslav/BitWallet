@@ -1,14 +1,12 @@
-<div class="modal__body">
+	<img (click)="toggleDropdown()" src="../../../assets//icons/svg/icon-Settings.svg" alt="Settings">
+
+<div *ngIf="active" class="modal">
 	<ul class="modal__list">
-		<li>
-			<button type="button">
-				Preferences
-			</button>
-		</li>
-		<li>
-			<button (click)="logout($event)" type="button">
-				Log Out
-			</button>
-		</li>
+			<li>
+				<a>Preferences</a>
+			</li>
+			<li>
+				<a (click)="logout($event)" type="button">Log Out</a>
+			</li>
 	</ul>
 </div>

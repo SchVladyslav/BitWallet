@@ -1,6 +1,37 @@
+@import '../../../../assets/scss/abstracts/vars.scss';
+
 .modal {
-  &__body {
-		min-width: 150px;
-		background-color: #fff;
+	position: absolute;
+	top: 50px;
+	right: 10px;
+	min-width: 130px;
+
+	padding: 10px;
+
+	font-size: 16px;
+	font-weight: 600;
+	border-radius: 3px;
+	color: $secondary-color-grey-dark;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 8px;
+	
+	&__list {		
+		
+		li {
+			padding: 15px 40px 10px 10px;
+			border-radius: 8px;
+			transition: 0.3s ease;
+			cursor: pointer;
+
+		}
+
+		li + li {
+			margin-top: 10px;
+		}
+
+		li:hover {
+			color: $main-color-medium;
+			background-color: $hover-color-blue;
+		}
 	}
 }

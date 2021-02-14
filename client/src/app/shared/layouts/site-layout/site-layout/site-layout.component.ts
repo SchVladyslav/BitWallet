@@ -32,8 +32,4 @@ export class SiteLayoutComponent implements OnInit {
   public openRequestModal(): void {
     this.bsModalRef = this.modalService.show(RequestModalComponent);
   }
-
-  public openDropdown(): void {
-    this.bsModalRef = this.modalService.show(SettingsDropdownComponent);
-  }
 }

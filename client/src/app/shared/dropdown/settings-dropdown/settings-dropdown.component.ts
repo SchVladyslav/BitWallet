@@ -10,9 +10,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SettingsDropdownComponent implements OnInit {
 
-  constructor(public bsModalRef: BsModalRef, private authService: AuthService, private router: Router) { }
+  active: boolean = false;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  public toggleDropdown(): void {
+    this.active = this.active ? false : true;
   }
 
   logout(event: Event) {

@@ -6,6 +6,7 @@ import { LogInComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout/auth-layout.component';
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout/site-layout.component';
+import { CurrencyLayoutComponent } from './shared/layouts/currency-layout/currency-layout.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   ] },
   { path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'btc', component: CurrencyLayoutComponent },
   ]},
 ];
 

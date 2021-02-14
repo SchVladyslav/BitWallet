@@ -15,29 +15,6 @@
 	cursor: pointer;
 }
 
-.main {
-	display: flex;
-	padding: 20px 10px;
-	color: #000;
-
-	.crypto__list {
-		li {
-			display: flex;
-			align-items: center;
-			padding: 10px 15px;
-			border-radius: 8px;
-			font-weight: 600;
-			color: $secondary-color-grey-dark;
-			transition: ease 0.3s;
-			cursor: pointer;
-
-			p {
-				margin-left: 10px;
-			}
-		}
-	}
-}
-
 .header {
 	display: flex;
 	align-items: center;
@@ -91,6 +68,7 @@
 	}
 
 	&__settings-wrapper {
+		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -98,9 +76,31 @@
 	}
 }
 
+.main {
+	display: flex;
+	padding: 10px;
+	color: #000;
+
+	.crypto__list {
+		li {
+			display: flex;
+			align-items: center;
+			padding: 10px 15px;
+			border-radius: 8px;
+			font-weight: 600;
+			color: $secondary-color-grey-dark;
+			transition: ease 0.3s;
+			cursor: pointer;
+
+			p {
+				margin-left: 10px;
+			}
+		}
+	}
+}
+
 .aside {
-	width: 100%;
-	max-width: 220px;
+	min-width: 220px;
 	
 	&__title,
 	&__balance {

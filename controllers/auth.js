@@ -1,17 +1,15 @@
 const { v4: uuidv4 } = require("uuid")
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-const keys = require('../config/keys');
+const keys = require('../helper/keys');
 const User = require('../models/User');
 const errorHandler = require('../utils/errorHandler');
+const statuses = require('../helper/statuses');
+const messages = require('../helper/messages');
 
 module.exports.login = async function(req, res) {
 	const isUserExist = await User.findOne({wallet: req.body.wallet});
-	const notFoundStatus = 404;
-	const notFoundMessage = "Client was not found!";
-	const unauthStatus = 401;
-	const unauthMessage = "Incorrect password. Try again.";
-	const expiresInNumber = 60 * 60; 
+	const expiresInNumber = 60 * 60;
 
 	if (isUserExist) {
 		const passwordResult = bcrypt.compareSync(req.body.password, isUserExist.password);
@@ -26,14 +24,14 @@ module.exports.login = async function(req, res) {
 				token: `Bearer ${token}`
 			});
 		} else {
-			res.status(unauthStatus).json({
-				message: unauthMessage
+			res.status(statuses.unauthStatus).json({
+				message: messages.unauthMessage
 			});
 		}
 
 	} else {
-		res.status(notFoundStatus).json({
-			message: notFoundMessage
+		res.status(statuses.notFoundStatus).json({
+			message: messages.clientNotFoundMessage
 		});
 	}
 }
@@ -41,14 +39,10 @@ module.exports.login = async function(req, res) {
 module.exports.signup = async function(req, res) {
 	const isUserExist = await User.findOne({email: req.body.email});
 	const walletID = uuidv4();
-	const conflictStatus = 409;
-	const conflictMessage = "Email is already in use! Try another one.";
-	const createdStatus = 201;
-	const conflictMessage2 = "Passwords weren't matched!";
-
+	
 	if (isUserExist) {
-		res.status(conflictStatus).json({
-			message: conflictMessage
+		res.status(statuses.conflictStatus).json({
+			message: messages.emailConflictMessage
 		});
 	} else {
 		const salt = bcrypt.genSaltSync(10);
@@ -56,8 +50,8 @@ module.exports.signup = async function(req, res) {
 		const confirmPassword = req.body.confirmPassword;
 
 		if (password !== confirmPassword) {
-			res.status(conflictStatus).json({
-				message: conflictMessage2
+			res.status(statuses.conflictStatus).json({
+				message: messages.passwordConflictMessage
 			})
 		}
 
@@ -69,7 +63,7 @@ module.exports.signup = async function(req, res) {
 
 		try {
 			await user.save();
-			res.status(createdStatus).json(user);
+			res.status(statuses.createdStatus).json(user);
 		} catch (error) {
 			errorHandler(res, e);
 		}

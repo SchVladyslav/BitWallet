@@ -1,27 +1,31 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AuthService } from '../../../services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AbstractPageDirective } from '../../abstract-page/abstract-page.directive';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit, OnDestroy {
+export class LoginFormComponent extends AbstractPageDirective implements OnInit {
 
   form: FormGroup;
-  sub: Subscription; // responsible for preserving memory leak
   walletID: string;
 
   constructor(
     private authService: AuthService,
     private notificationService: NotificationService, 
     private router: Router, // for redirect to dashboard
-    private route: ActivatedRoute  
-  ) {}
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.walletID = this.authService.getWalletID();
@@ -31,7 +35,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       password: new FormControl(null, [Validators.required])
     });
 
-    this.route.queryParams.subscribe((params: Params) => {
+    this.route.queryParams
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((params: Params) => {
       if (params['registered']) {
         this.notificationService.show('You can login now.');
       } else if (params['accessDenied']) {
@@ -42,23 +48,18 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
-
   onSubmit() {
-    this.form.disable();
-
-    this.sub = this.authService.login(this.form.value)
+    this.spinner.show();
+    this.authService.login(this.form.value)
+    .pipe(takeUntil(this.destroy$))
     .subscribe(
-      () => this.router.navigate(['/dashboard']),
+      () => {
+        this.router.navigate(['/dashboard']);
+      },
       (error) => {
+        this.spinner.hide();
         this.notificationService.show(error.error.message, 'error');
-        this.form.enable();     
       }
-    );
+    );    
   }
-
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BsModalRef, ModalModule } from 'ngx-bootstrap/modal';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -22,6 +22,14 @@ import { LoginFormComponent } from './shared/forms/login-form/login-form.compone
 import { SignupFormComponent } from './shared/forms/signup-form/signup-form.component';
 import { Interceptor } from './interceptor/interceptor';
 import { NotificationModalComponent } from './components/modal/notification-modal/notification-modal.component';
+import { CurrencyLayoutComponent } from './shared/layouts/currency-layout/currency-layout.component';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  wheelPropagation: true
+};
 
 @NgModule({
   declarations: [
@@ -41,6 +49,7 @@ import { NotificationModalComponent } from './components/modal/notification-moda
     LoginFormComponent,
     SignupFormComponent,
     NotificationModalComponent,
+    CurrencyLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +58,9 @@ import { NotificationModalComponent } from './components/modal/notification-moda
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PerfectScrollbarModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   entryComponents: [
     SendModalComponent,
@@ -61,8 +73,13 @@ import { NotificationModalComponent } from './components/modal/notification-moda
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: Interceptor
+    },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
