@@ -16,7 +16,6 @@ export class CurrencyLayoutComponent extends AbstractPageDirective implements On
   }
 
   ngOnInit(): void {
-    
     // .pipe(takeUntil(this.destroy$))
     // .subscribe(
     //   (data) => {

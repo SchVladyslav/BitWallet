@@ -1,43 +1,63 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form__group">
-			<div class="label__group">
-        <label class="form__label" for="id">Wallet ID</label>
-        <span *ngIf="form.get('wallet').invalid && form.get('wallet').touched" class="form__validation">
-            <span *ngIf="form.get('wallet').errors['required']">Required</span>
-            <span *ngIf="form.get('wallet').errors['minlength']">Invalid Wallet ID</span>
-				</span>
-			</div>
-      <input 
-        class="form__input"
-        formControlName="wallet" 
-        id="id" 
-        type="text"
-        [ngClass]="{'invalid': form.get('wallet').invalid && form.get('wallet').touched}"
+  <div class="form-group">
+    <div class="label__group">
+      <label class="form__label" for="id">Wallet ID</label>
+      <span
+        *ngIf="form.get('wallet').invalid && form.get('wallet').touched"
+        class="form__validation"
       >
+        <span *ngIf="form.get('wallet').errors['required']">Required</span>
+        <span *ngIf="form.get('wallet').errors['minlength']"
+          >Invalid Wallet ID</span
+        >
+      </span>
     </div>
-    <p class="form__text">Your Wallet ID can be found at the bottom of any email we’ve ever sent you. Need a reminder?</p>
-    <div class="form__group">
-			<div class="label__group">
-        <label class="form__label" for="pass">Password</label>
-        <span *ngIf="form.get('password').invalid && form.get('password').touched" class="form__validation">
-            <span *ngIf="form.get('password').errors['required']">Required</span>
-				</span>
-			</div>
-      <input 
-        class="form__input" 
-        formControlName="password" 
-        id="pass" 
-        type="password"
-        [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
-      >		
+    <input
+      class="form__input"
+      formControlName="wallet"
+      id="id"
+      type="text"
+      [ngClass]="{
+        invalid: form.get('wallet').invalid && form.get('wallet').touched
+      }"
+    />
+  </div>
+  <p class="form__text">
+    Your Wallet ID can be found at the bottom of any email we’ve ever sent you.
+    Need a reminder?
+  </p>
+  <div class="form-group">
+    <div class="label__group">
+      <label class="form__label" for="pass">Password</label>
+      <span
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+        class="form__validation"
+      >
+        <span *ngIf="form.get('password').errors['required']">Required</span>
+      </span>
     </div>
-    <button class="form__button" [disabled]="form.invalid || form.disabled" type="submit">Log In
-      <ngx-spinner
+    <input
+      class="form__input"
+      formControlName="password"
+      id="pass"
+      type="password"
+      [ngClass]="{
+        invalid: form.get('password').invalid && form.get('password').touched
+      }"
+    />
+  </div>
+  <button
+    class="form__button"
+    [disabled]="form.invalid || form.disabled"
+    type="submit"
+  >
+    Log In
+    <ngx-spinner
       bdColor="rgba(255, 255, 255, 0.5)"
-      color = "var($main-color-button)"
+      color="var($main-color-button)"
       size="medium"
       type="line-scale"
       [fullScreen]="false"
-      ></ngx-spinner>
-    </button>
+    ></ngx-spinner>
+  </button>
 </form>

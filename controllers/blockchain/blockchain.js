@@ -35,18 +35,18 @@ class Transaction {
 }
 
 class Block {
-  constructor(timestamp, transactions, previousHash = '') {
+	constructor(timestamp, transactions, previousHash = '') {
 		this.previousHash = previousHash;
-    this.timestamp = timestamp;
-    this.transactions = transactions;
+		this.timestamp = timestamp;
+		this.transactions = transactions;
 		this.hash = this.calculateHash();
 		this.nonce = 0;
-  }
+	}
 
-  calculateHash() {
+	calculateHash() {
 		return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
 	}
-		
+
 	mineBlock(difficulty) {
 		while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) { // how fast our blocks is added to the blockchain. Amount of zeros before hash 
 			this.nonce++;

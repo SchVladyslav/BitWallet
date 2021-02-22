@@ -8,28 +8,28 @@ import { tap } from 'rxjs/operators';
 	providedIn: 'root'
 })
 export class AuthService {
-		
-		private token: string = null;
 
-    constructor(private http: HttpClient) {
+	private token: string = null;
 
-    }
-    
-    login(user: User): Observable<{token: string}> {
-			return this.http.post<{token: string}>('/api/auth/login', user)
-				.pipe(
-					tap(
-						({token}) => {
-							localStorage.setItem('auth-token', token);
-							this.setToken(token);
-							localStorage.setItem('walletID', user.wallet)
-						}
-					)
-				);
-    }
-		
-    signup(user: User): Observable<User> {
-			return this.http.post<User>('/api/auth/signup', user)
+	constructor(private http: HttpClient) {
+
+	}
+
+	login(user: User): Observable<{ token: string }> {
+		return this.http.post<{ token: string }>('/api/auth/login', user)
+			.pipe(
+				tap(
+					({ token }) => {
+						localStorage.setItem('auth-token', token);
+						this.setToken(token);
+						localStorage.setItem('walletID', user.wallet)
+					}
+				)
+			);
+	}
+
+	signup(user: User): Observable<User> {
+		return this.http.post<User>('/api/auth/signup', user)
 			.pipe(
 				tap(
 					(user) => {
@@ -37,26 +37,26 @@ export class AuthService {
 					}
 				)
 			);
-		}
+	}
 
-		setToken(token: string): void {
-			this.token = token;
-		}
+	setToken(token: string): void {
+		this.token = token;
+	}
 
-		getWalletID(): string {
-			return localStorage.getItem('walletID');
-		}
+	getWalletID(): string {
+		return localStorage.getItem('walletID');
+	}
 
-		getToken(): string {
-			return this.token;
-		}
+	getToken(): string {
+		return this.token;
+	}
 
-		isAuthenticated(): boolean {
-			return !!this.token;
-		}
+	isAuthenticated(): boolean {
+		return !!this.token;
+	}
 
-		logout() {
-			this.setToken(null);
-			localStorage.removeItem('auth-token');
-		}		
+	logout() {
+		this.setToken(null);
+		localStorage.removeItem('auth-token');
+	}
 }

@@ -1,12 +1,19 @@
-	<img (click)="toggleDropdown()" src="../../../assets//icons/svg/icon-Settings.svg" alt="Settings">
+<div class="btn-group" dropdown #dropdownDir="bs-dropdown">
+	<button id="button-animated" dropdownToggle>
+		<img
+			src="../../../assets//icons/svg/icon-Settings.svg"
+			alt="Settings"
+		/>
+	</button>
 
-<div *ngIf="active" class="modal">
-	<ul class="modal__list">
+	<div class="modal" *dropdownMenu>
+		<ul id="dropdown-animated" class="modal__list">
 			<li>
-				<a>Preferences</a>
+				<a (click)="preferences($event, dropdownDir)">Preferences</a>
 			</li>
 			<li>
-				<a (click)="logout($event)" type="button">Log Out</a>
+				<a (click)="logout($event)">Log Out</a>
 			</li>
-	</ul>
+		</ul>
+	</div>
 </div>

@@ -8,6 +8,7 @@ import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout/au
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout/site-layout.component';
 import { CurrencyLayoutComponent } from './shared/layouts/currency-layout/currency-layout.component';
 import { AuthGuard } from './auth.guard';
+import { PreferencesComponent } from './components/preferences/preferences.component';
 
 const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'btc', component: CurrencyLayoutComponent },
+    { path: 'preferences', component: PreferencesComponent }
   ]},
 ];
 
