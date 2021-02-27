@@ -1,5 +1,5 @@
-@import '../../../assets/scss/abstracts/vars.scss';
-@import '../../../assets/scss/abstracts/buttons.scss';
+@import "../../../assets/scss/abstracts/vars.scss";
+@import "../../../assets/scss/abstracts/buttons.scss";
 
 .currency__panel {
   display: flex;
@@ -56,4 +56,15 @@
 
 .currency__search:focus {
   border-color: $main-color-button;
+}
+
+.currency__transactions {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 99%;
+  border-radius: 8px;
+  border: 1px solid rgb(240, 242, 247);
 }

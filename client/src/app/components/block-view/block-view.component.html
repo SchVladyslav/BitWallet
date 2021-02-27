@@ -1,14 +1,26 @@
 <div class="transaction">
   <div class="transaction__type-wrapper">
-    <h4 class="transaction__type">Received BTC</h4>
-    <time>{{ block.timestamp | date: "MMM d, y, h:mm a" }}</time>
+    <div class="transaction-icon">
+      <span></span>
+    </div>
+    <div class="transaction__title">
+      <h4 class="transaction__type">Received BTC</h4>
+      <time>{{ block.timestamp | date: "MMM d, y, h:mm a" }}</time>
+    </div>
   </div>
   <div class="transaction__address-wrapper">
-    <p class="transaction__to">To: {{ block.hash }}</p>
-    <p class="transaction__from">From: {{ block.previousHash }}</p>
+    <p class="transaction__to">
+      <span>To:</span>
+      {{ block.hash }}
+    </p>
+    <p class="transaction__from">
+      <span>From:</span>
+      {{ block.previousHash }}
+    </p>
   </div>
   <div class="transaction__amount-wrapper">
-    <span class="transaction__price">{{ block.nonce | currency: "USD" }}</span>
     <span class="transaction__amount">0.029971 BTC</span>
+    <span class="transaction__price">{{ block.nonce | currency: "USD" }}</span>
   </div>
+  <app-transactions [transaction]="block.transactions"></app-transactions>
 </div>

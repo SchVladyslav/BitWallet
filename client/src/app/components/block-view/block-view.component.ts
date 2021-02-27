@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Chain, Transaction } from 'src/app/interfaces/Blockchain.interface';
 
 @Component({
   selector: 'app-block-view',
@@ -7,11 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BlockViewComponent implements OnInit {
 
-  @Input() public block: any;
+  @Input() public block: Chain;  
+  @Input() public transaction: Transaction;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

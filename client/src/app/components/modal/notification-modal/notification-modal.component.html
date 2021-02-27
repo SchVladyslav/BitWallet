@@ -1,4 +1,11 @@
-<div *ngIf="active" class="notification" [ngClass]="{'error': data.type === 'error'}">
-    <span class="notification__message">{{data.message}}</span>
-    <span class="notification__close" (click)="closeModal()">X</span>
+<div
+  *ngIf="active"
+  class="notification"
+  [ngClass]="{
+    error: data.type === 'error',
+    success: data.type === 'success'
+  }"
+>
+  <span class="notification__message">{{ data.message }}</span>
+  <span class="notification__close" (click)="closeModal()">X</span>
 </div>

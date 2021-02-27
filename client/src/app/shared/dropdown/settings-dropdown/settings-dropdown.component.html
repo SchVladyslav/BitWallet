@@ -1,19 +1,22 @@
-<div class="btn-group" dropdown #dropdownDir="bs-dropdown">
-	<button id="button-animated" dropdownToggle>
-		<img
-			src="../../../assets//icons/svg/icon-Settings.svg"
-			alt="Settings"
-		/>
-	</button>
+<div class="settings-dropdown" dropdown>
+  <button id="button-animated" type="button" aria-controls="dropdown-animated" dropdownToggle>
+    <img src="../../../assets/icons/svg/icon-Settings.svg" alt="Settings" />
+  </button>
 
-	<div class="modal" *dropdownMenu>
-		<ul id="dropdown-animated" class="modal__list">
-			<li>
-				<a (click)="preferences($event, dropdownDir)">Preferences</a>
-			</li>
-			<li>
-				<a (click)="logout($event)">Log Out</a>
-			</li>
-		</ul>
-	</div>
+  <div
+    id="dropdown-animated"
+    class="settings-dropdown__menu"
+    role="menu"
+    aria-labelledby="button-animated"
+    *dropdownMenu
+  >
+    <ul class="dropdown__list">
+      <li>
+        <a (click)="preferences($event)">Preferences</a>
+      </li>
+      <li>
+        <a (click)="logout($event)">Log Out</a>
+      </li>
+    </ul>
+  </div>
 </div>

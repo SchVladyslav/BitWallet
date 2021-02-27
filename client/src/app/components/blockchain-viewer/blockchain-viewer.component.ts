@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chain } from 'src/app/interfaces/Blockchain.interface';
+import { Chain, Transaction } from 'src/app/interfaces/Blockchain.interface';
 import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
 
 @Component({
@@ -10,11 +10,16 @@ import { BlockchainService } from 'src/app/services/blockchain/blockchain.servic
 export class BlockchainViewerComponent implements OnInit {
 
   public blocks: Chain[] = [];
+  public transaction: Transaction;
 
   constructor(private blockchainService: BlockchainService) {
+    this.blockchainService.blockchainSubject.subscribe(blockchain => this.blocks = blockchain?.chain); // getBlocks()
   }
 
   ngOnInit(): void {
-    this.blockchainService.blockchainSubject.subscribe(blockchain => this.blocks = blockchain?.chain);
+  }
+
+  public selectedBlock(block: Chain) {
+    this.transaction = block.transactions;
   }
 }

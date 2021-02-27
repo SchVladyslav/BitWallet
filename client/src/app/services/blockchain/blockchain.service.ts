@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Keys } from '../../interfaces/Keys.interface';
 import { NotificationService } from '../notification.service';
-import { Blockchain, Chain } from '../../interfaces/Blockchain.interface';
+import { Blockchain, Chain, Transaction } from '../../interfaces/Blockchain.interface';
 import { AbstractPageDirective } from 'src/app/shared/abstract-page/abstract-page.directive';
 import { takeUntil } from 'rxjs/operators';
 
@@ -46,9 +46,14 @@ export class BlockchainService extends AbstractPageDirective {
   private getBlockchainInstance(): void {
     this.http.get<Blockchain>(`${this.baseUrl}/blockchain`)
     .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        (blockchain: Blockchain) => this.blockchainSubject.next(blockchain),
-        (error) => this.notificationService.show(error.error.message, 'error')
-      );
+    .subscribe(
+      (blockchain: Blockchain) => this.blockchainSubject.next(blockchain),
+      (error) => this.notificationService.show(error.error.message, 'error')
+    );
+  }
+
+  public addTransaction(transaction: Transaction): Observable<Transaction> {
+    console.log(transaction);
+    return this.http.post<Transaction>(`${this.baseUrl}/transaction`, transaction);
   }
 }

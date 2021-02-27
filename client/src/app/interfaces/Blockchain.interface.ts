@@ -8,7 +8,7 @@ export interface Blockchain {
 export interface Chain {
 	previousHash: string;
 	timestamp: Date;
-	transactions: any[];
+	transactions: Transaction;
 	hash: string;
 	nonce: number;
 }

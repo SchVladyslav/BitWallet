@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsDropdownConfig, BsDropdownDirective } from 'ngx-bootstrap/dropdown';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-settings-dropdown',
   templateUrl: './settings-dropdown.component.html',
   styleUrls: ['./settings-dropdown.component.scss'],
-  // providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true } }]
+  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }]
 })
 export class SettingsDropdownComponent implements OnInit {
 
@@ -17,9 +16,8 @@ export class SettingsDropdownComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  preferences(event: Event, dropdown: BsDropdownDirective) {
+  preferences(event: Event) {
     event.preventDefault();
-    dropdown.hide();
     this.router.navigate(['/preferences']);
   }
 

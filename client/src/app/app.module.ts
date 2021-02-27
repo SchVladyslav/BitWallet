@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlockchainViewerComponent } from './components/blockchain-viewer/blockchain-viewer.component';
 import { BlockViewComponent } from './components/block-view/block-view.component';
 import { PreferencesComponent } from './components/preferences/preferences.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
@@ -57,6 +58,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BlockchainViewerComponent,
     BlockViewComponent,
     PreferencesComponent,
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,36 +1,35 @@
-@import '../../../../assets/scss/abstracts/vars.scss';
+@import "../../../../assets/scss/abstracts/vars.scss";
 
-.modal {
-	position: absolute;
-	top: 50px;
-	right: 10px;
-	min-width: 130px;
+.settings-dropdown__menu {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  min-width: 130px;
 
-	padding: 10px;
+  padding: 10px;
 
-	font-size: 16px;
-	font-weight: 600;
-	border-radius: 3px;
-	color: $secondary-color-grey-dark;
-	background-color: #fff;
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 8px;
-	
-	&__list {		
-		
-		li {
-			padding: 15px 40px 15px 10px;
-			border-radius: 8px;
-			transition: 0.3s ease;
-			cursor: pointer;
-		}
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 3px;
+  color: $secondary-color-grey-dark;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 8px;
 
-		li + li {
-			margin-top: 10px;
-		}
+  .dropdown__list {
+    li {
+      padding: 15px 40px 15px 10px;
+      border-radius: 8px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
 
-		li:hover {
-			color: $main-color-medium;
-			background-color: $hover-color-blue;
-		}
-	}
+    li + li {
+      margin-top: 10px;
+    }
+
+    li:hover {
+      color: $main-color-medium;
+      background-color: $hover-color-blue;
+    }
+  }
 }

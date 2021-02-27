@@ -10,7 +10,7 @@ const blockchain = require('./routes/blockchain');
 const keys = require('./helper/keys');
 const app = express();
 
-mongoose.connect(keys.MONGO_URI)
+mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     console.log('MongoDB is connected');
 })
@@ -21,8 +21,8 @@ require('./middleware/passport')(passport);
 
 app.use(morgan('dev'));
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/analytics', analyticsRoutes);
