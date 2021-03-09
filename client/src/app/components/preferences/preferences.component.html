@@ -1,4 +1,4 @@
-<section class="form-container" *ngIf="blockchain">
+<section class="form-container" *ngIf="difficulty && miningReward">
   <h1>Settings</h1>
   <p>
     Control how the blockchain behaves when new transactions or blocks are
@@ -14,7 +14,7 @@
       class="form__input"
       id="difficulty"
       aria-describedby="difficultyHelp"
-      [(ngModel)]="blockchain.difficulty"
+      [(ngModel)]="difficulty"
     />
     <small id="difficultyHelp" class="form__text">
       Difficulty controls how long the mining process takes. Higher numbers will
@@ -32,7 +32,7 @@
       class="form__input"
       id="miningReward"
       aria-describedby="miningRewardHelp"
-      [(ngModel)]="blockchain.miningReward"
+      [(ngModel)]="miningReward"
     />
     <small id="miningRewardHelp" class="form__text">
       How much "coins" a miner receives for successfully creating a new block

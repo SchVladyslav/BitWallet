@@ -1,20 +1,19 @@
 .logo {
-	
-	&-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-	cursor: pointer;
-	outline: none;
-	}
+  &-wrapper {
+    display: flex;
+    align-items: center;
+	width: 250px;
+    cursor: pointer;
+    outline: none;
+  }
 
-	&__title {
-		font-size: 18px;
-		margin-left: 10px;
-	}
+  &__title {
+    font-size: 22px;
+    margin-left: 10px;
+  }
 
-	&__img {
-		height: 16px;
-		width: 16px;
-	}
+  &__img {
+    height: 22px;
+    width: 22px;
+  }
 }

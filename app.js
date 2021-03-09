@@ -7,6 +7,7 @@ const morgan = require('morgan'); // logging
 const authRoutes = require('./routes/auth');
 const analyticsRoutes = require('./routes/analytics');
 const blockchain = require('./routes/blockchain');
+const coinmarketcup = require('./routes/coinMarketCup');
 const keys = require('./helper/keys');
 const app = express();
 
@@ -27,5 +28,6 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/blockchain', blockchain);
+app.use('/api/coinmarketcup', coinmarketcup);
 
 module.exports = app;

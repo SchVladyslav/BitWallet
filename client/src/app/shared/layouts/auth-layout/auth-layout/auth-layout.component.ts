@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { environment } from 'src/environments/environment';
+import { Environment, environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-auth-layout',
@@ -14,7 +14,7 @@ export class AuthLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.version = environment.version;
+    this.version = Environment.version;
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { takeUntil } from 'rxjs/operators';
+import { Keys } from 'src/app/interfaces/Keys.interface';
 import { WalletType } from 'src/app/interfaces/WalletType.interface';
 import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -14,8 +15,8 @@ import { AbstractPageDirective } from 'src/app/shared/abstract-page/abstract-pag
 })
 export class SendModalComponent extends AbstractPageDirective implements OnInit {
 
-  walletType: string = WalletType.BTC;
-  sendForm: FormGroup;
+  public walletType: string = WalletType.BTC;
+  public sendForm: FormGroup;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -41,13 +42,14 @@ export class SendModalComponent extends AbstractPageDirective implements OnInit 
     this.bsModalRef.hide();
   }
 
-  send(): void {
+  createTransaction(): void {
     this.blockchainService.addTransaction(this.sendForm.value)
     .pipe(takeUntil(this.destroy$))
     .subscribe(
       () => {
-        this.bsModalRef.hide()
-        this.notificationService.show('Your coins were sent successfully', 'success')
+        this.bsModalRef.hide();
+        this.notificationService.show('Your coins were sent successfully', 'success');
+        this.blockchainService.isTransactionCreated.next(true);
       },
       (error) => this.notificationService.show(error.error.message, 'error')
     );

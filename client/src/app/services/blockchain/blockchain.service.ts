@@ -11,13 +11,14 @@ import { takeUntil } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BlockchainService extends AbstractPageDirective {
-  private walletKeys: Keys[] = [];
+  public walletKeys: Keys[] = [];
   private baseUrl: string = '/api/blockchain';
 
-  public blockchainSubject: BehaviorSubject<Blockchain> = new BehaviorSubject<Blockchain>(null); 
+  public blockchainSubject: BehaviorSubject<Blockchain> = new BehaviorSubject<Blockchain>(null);
+  public isTransactionCreated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private notificationService: NotificationService
   ) {
     super();
@@ -40,7 +41,6 @@ export class BlockchainService extends AbstractPageDirective {
       publicKey: keys.publicKey,
       privateKey: keys.privateKey
     });
-    console.log(this.walletKeys);
   }
 
   private getBlockchainInstance(): void {
@@ -53,7 +53,18 @@ export class BlockchainService extends AbstractPageDirective {
   }
 
   public addTransaction(transaction: Transaction): Observable<Transaction> {
-    console.log(transaction);
     return this.http.post<Transaction>(`${this.baseUrl}/transaction`, transaction);
+  }
+
+  public minePendingTransactions() {
+    return this.http.get<Transaction>(`${this.baseUrl}/transactions/mine`);
+  }
+
+  public getPendingTransactions() {
+    return this.http.get<Transaction>(`${this.baseUrl}/transactions/pending`);
+  }
+
+  public getBalance() {
+    return this.http.get<number>(`${this.baseUrl}/balance`);
   }
 }

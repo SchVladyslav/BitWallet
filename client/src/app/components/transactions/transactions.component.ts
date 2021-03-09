@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Transaction } from 'src/app/interfaces/Blockchain.interface';
+import { Chain } from 'src/app/interfaces/Blockchain.interface';
 
 @Component({
   selector: 'app-transactions',
@@ -8,7 +8,7 @@ import { Transaction } from 'src/app/interfaces/Blockchain.interface';
 })
 export class TransactionsComponent implements OnInit {
 
-  @Input() public transaction: Transaction;
+  @Input() public block: Chain;
 
   constructor() { }
 

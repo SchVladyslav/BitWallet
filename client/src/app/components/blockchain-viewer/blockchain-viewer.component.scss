@@ -1,6 +1,14 @@
 @import "../../../assets/scss/abstracts/vars.scss";
 @import "../../../assets/scss/abstracts/buttons.scss";
 
+:host {
+  ::ng-deep {
+    .ps-content {
+      max-height: 400px;
+    }
+  }
+}
+
 .currency__panel {
   display: flex;
   justify-content: space-between;
@@ -60,6 +68,7 @@
 
 .currency__transactions {
   display: flex;
+  position: relative;
   flex-direction: column;
   -webkit-box-pack: start;
   justify-content: flex-start;
@@ -67,4 +76,9 @@
   width: 99%;
   border-radius: 8px;
   border: 1px solid rgb(240, 242, 247);
+}
+
+.currency__transactions li {
+  display: flex;
+  flex-direction: column;
 }

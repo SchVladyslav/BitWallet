@@ -15,5 +15,7 @@ export class BlockViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('block', this.block);
+    console.log('transaction', this.transaction);
   }
 }

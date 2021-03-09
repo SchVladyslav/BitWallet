@@ -9,12 +9,16 @@ import { BlockchainService } from 'src/app/services/blockchain/blockchain.servic
 })
 export class PreferencesComponent implements OnInit {
 
-  public blockchain: Blockchain;
+  public miningReward: number;
+  public difficulty: number;
 
   constructor(private blockchainService: BlockchainService) {
-    this.blockchainService.blockchainSubject.subscribe(blockchain => this.blockchain = blockchain);
   }
 
   ngOnInit(): void {
+    this.blockchainService.blockchainSubject.subscribe(blockchain => {
+      this.miningReward = blockchain?.miningReward;
+      this.difficulty = blockchain?.difficulty;
+    });
   }
 }

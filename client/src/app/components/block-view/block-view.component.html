@@ -11,16 +11,15 @@
   <div class="transaction__address-wrapper">
     <p class="transaction__to">
       <span>To:</span>
-      {{ block.hash }}
+      <span>{{ transaction.toAddress }}</span>
     </p>
     <p class="transaction__from">
       <span>From:</span>
-      {{ block.previousHash }}
+      <span>{{ transaction.fromAddress }}</span>
     </p>
   </div>
   <div class="transaction__amount-wrapper">
-    <span class="transaction__amount">0.029971 BTC</span>
-    <span class="transaction__price">{{ block.nonce | currency: "USD" }}</span>
+    <span class="transaction__amount">0.0 BTC</span>
+    <span class="transaction__price">{{ transaction.amount | currency: "USD" }}</span>
   </div>
-  <app-transactions [transaction]="block.transactions"></app-transactions>
 </div>

@@ -3,6 +3,7 @@
 .currency {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 
 	.icon {
     height: 38px;
@@ -33,7 +34,6 @@
 
 	&__stats {
 		display: flex;
-		justify-content: space-between;
 
 		margin: 15px 0;
 	}
@@ -41,7 +41,6 @@
 	&__container {
 		display: flex;
 		flex-direction: column;
-		width: 100%;
 		padding: 10px;
 		background-color: #fff;
 		border-radius: 8px;

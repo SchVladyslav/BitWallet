@@ -13,6 +13,8 @@ class Transaction {
 		return SHA256(this.fromAddress + this.toAddress + this.amount).toString();
 	}
 
+	// You can only send a transaction from the wallet that is linked to your
+  // key. So here we check if the fromAddress matches your publicKey
 	signTransaction(signingKey) {
 		if (signingKey.getPublic('hex') !== this.fromAddress) {
 			throw new Error('You cannot sign transaction for other wallets!');
@@ -87,15 +89,16 @@ class Blockchain {
 	}
 
 	minePendingTransactions(miningRewardAddress) {
-		let block = new Block(Date.now(), this.pendingTransactions);
+		// const rewardTx = new Transaction(null, miningRewardAddress, this.miningReward);
+    // this.pendingTransactions.push(rewardTx);
+	
+		const block = new Block(Date.now(), this.pendingTransactions, this.getLatestBlock().hash);
 		block.mineBlock(this.difficulty);
 
 		console.log('Block successfully mined!');
 		this.chain.push(block);
 
-		this.pendingTransactions = [
-			new Transaction(null, miningRewardAddress, this.miningReward)
-		];
+		this.pendingTransactions = [];
 	}
 
 	addTransaction(transaction) {

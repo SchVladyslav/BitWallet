@@ -9,20 +9,19 @@
 
 .content-wrapper {
   display: flex;
+  position: relative;
 }
 
 .balance,
 .diagram {
   width: 100%;
-  min-width: 285px;
+  min-width: 400px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
 }
 
 .balance {
-  margin-left: 30px;
-
   .title__wrapper {
     display: flex;
     justify-content: space-between;
@@ -88,7 +87,7 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  margin: 0 40px 0 30px;
+  margin-left: 30px;
 
   .time__list {
     display: flex;
@@ -112,6 +111,8 @@
   }
 
   .diagram__buttons {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 20px;
 
     .button {

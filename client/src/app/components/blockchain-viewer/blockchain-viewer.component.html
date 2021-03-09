@@ -1,28 +1,43 @@
-<div class="currency__panel">
-  <ul class="panel__list">
-    <li>
-      <button class="panel__button active">All</button>
-    </li>
-    <li>
-      <button class="panel__button">Received</button>
-    </li>
-    <li>
-      <button class="panel__button">Sent</button>
-    </li>
-    <li>
-      <button class="panel__button">Transferred</button>
+<perfect-scrollbar>
+  <div class="currency__panel">
+    <ul class="panel__list">
+      <li>
+        <button class="panel__button active">All</button>
+      </li>
+      <li>
+        <button class="panel__button">Received</button>
+      </li>
+      <li>
+        <button class="panel__button">Sent</button>
+      </li>
+      <li>
+        <button class="panel__button">Transferred</button>
+      </li>
+    </ul>
+
+    <div class="currency__actions">
+      <button class="currency__download">Download</button>
+      <input class="currency__search" placeholder="Search" />
+    </div>
+  </div>
+  <ul class="currency__transactions">
+    <li
+      *ngFor="let block of blocks; index as i; trackBy: trackBy"
+      (click)="selectedBlock(block)"
+    >
+      <app-block-view [block]="block" [transaction]="block.transactions[0]">
+      </app-block-view>
+      <app-transactions
+        *ngIf="selected === block"
+        [block]="block"
+      ></app-transactions>
     </li>
   </ul>
-
-  <div class="currency__actions">
-    <button class="currency__download">Download</button>
-    <input class="currency__search" placeholder="Search" />
-  </div>
-</div>
-<div class="currency__transactions">
-  <app-block-view
-    *ngFor="let block of blocks"
-    [block]="block"
-    (click)="selectedBlock(block)"
-  ></app-block-view>
-</div>
+</perfect-scrollbar>
+<ngx-spinner
+  bdColor="rgba(255, 255, 255, 0.9)"
+  color="rgb(10, 132, 255)"
+  size="large"
+  type="ball-clip-rotate"
+  [fullScreen]="false"
+></ngx-spinner>

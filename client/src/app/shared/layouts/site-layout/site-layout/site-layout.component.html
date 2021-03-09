@@ -22,7 +22,7 @@
 	<main class="main">
 		<aside class="aside">
 			<h6 class="aside__title">Total Balance</h6>
-			<span class="aside__balance">$4,160.63</span>
+			<span class="aside__balance">{{balance | currency: "USD"}} </span>
 			<ul class="crypto__list">
 				<li 
 					*ngFor="let link of links" 
@@ -35,7 +35,9 @@
 				</li>			
 			</ul>
 		</aside>
-		<app-notification-modal></app-notification-modal>
-		<router-outlet></router-outlet>
+		<section class="components-wrapper">
+			<app-notification-modal></app-notification-modal>
+			<router-outlet></router-outlet>
+		</section>
 	</main>
 </div>

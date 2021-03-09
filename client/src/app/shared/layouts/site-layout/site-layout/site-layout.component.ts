@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RequestModalComponent } from 'src/app/components/modal/request-modal/request-modal.component';
 import { SendModalComponent } from 'src/app/components/modal/send-modal/send-modal.component';
+import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
 import { SettingsDropdownComponent } from 'src/app/shared/dropdown/settings-dropdown/settings-dropdown.component';
 import { NavigationList } from '../../../../interfaces/NavigationList';
 
@@ -12,6 +13,7 @@ import { NavigationList } from '../../../../interfaces/NavigationList';
 })
 export class SiteLayoutComponent implements OnInit {
 
+  public balance: number;
   bsModalRef: BsModalRef;
   links: NavigationList[] = [
     {url: '/dashboard', name: 'Dashboard', ticker: 'dashboard', img: '../../../assets/icons/svg/icon-dashboard.svg'},
@@ -20,9 +22,10 @@ export class SiteLayoutComponent implements OnInit {
     {url: '/ripple', name: 'Ripple', ticker: 'xrp', img: '../../../assets/icons/svg/icon-Xrp.svg'},
   ];
 
-  constructor(private modalService: BsModalService) { }
+  constructor(private modalService: BsModalService, private blockchainService: BlockchainService) { }
 
   ngOnInit(): void {
+    this.blockchainService.getBalance().subscribe(balance => this.balance = balance);
   }
 
   public openSendModal(): void {
