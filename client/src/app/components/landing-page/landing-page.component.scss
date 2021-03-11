@@ -44,12 +44,13 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-	background-image: url('../../../assets/icons/svg/hero-gradient.svg');
-	background-size: cover;
+  background-image: url("../../../assets/icons/svg/hero-gradient.svg");
+  background-size: cover;
 
   &__title {
     margin-bottom: 20px;
     font-size: 42px;
+    text-align: center;
   }
 
   &__subtitle {
@@ -60,38 +61,92 @@
 
   .currency__list {
     display: flex;
-    align-items: center;
-    margin-top: 20px;
+    flex-direction: column;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 40rem;
+    border-radius: 0.5rem;
+    color: rgb(18, 29, 51);
+    background-color: #fff;
 
     li {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      transition: 0.3s ease;
+    }
 
-      & + li {
-        margin-left: 40px;
-      }
+    // li:hover {
+    //   background: rgb(236, 245, 254);
+    //   border-radius: 0.5rem;
+    // }
+
+    li:not(:last-child) {
+      border-bottom: 1px solid rgb(240, 242, 247);
     }
 
     .icon {
-      height: 24px;
-      width: 24px;
-      margin-right: 10px;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem;
     }
+  }
+
+  .currency__name {
+    display: flex;
+    flex: 3 1 0%;
+    align-items: center;
+
+    span {
+      color: rgb(152, 161, 178);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-left: 5px;
+    }
+  }
+
+  .currency__price {
+    display: flex;
+    flex: 2 1 0%;
+
+    .price {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+  .currency__chart {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex: 2.5 1 0%;
 
     .percent {
-      margin-left: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-right: 2rem;
       color: $up-color;
     }
 
     .percent::before {
       content: "+";
-    }
-		
-    .down.percent::before {
-      content: "-";
+      position: absolute;
+      left: -5%;
     }
 
-		.down {
-			color: $down-color;
-		}
+    .down.percent::before {
+      content: "";
+    }
+
+    .down {
+      color: $down-color;
+    }
+
+    img {
+      height: 30px;
+      width: 128px;
+    }
   }
 }

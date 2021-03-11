@@ -5,7 +5,6 @@ const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 const key = ec.genKeyPair();
 let coin = new Blockchain();
-let newTransaction = new Transaction();
 
 module.exports.keys = async function (req, res) {
 	const walletKeys = {
@@ -22,6 +21,9 @@ module.exports.keys = async function (req, res) {
 
 module.exports.blockchain = async function (req, res) {
 	try {
+		if (coin.pendingTransactions.length) {
+			coin.minePendingTransactions();
+		}
 		res.status(statuses.createdStatus).json(coin);
 	} catch (error) {
 		errorHandler(res, error);
@@ -29,6 +31,7 @@ module.exports.blockchain = async function (req, res) {
 }
 
 module.exports.transaction = async function (req, res) {
+	let newTransaction = new Transaction();
 	newTransaction.fromAddress = key.getPublic('hex');
 	newTransaction.toAddress = req.body.toAddress;
 	newTransaction.amount = req.body.amount;

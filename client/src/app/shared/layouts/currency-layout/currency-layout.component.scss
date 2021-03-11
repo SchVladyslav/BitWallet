@@ -24,27 +24,48 @@
 	}
 
 	&__subtitle {
-		font-size: 14px;
-		color: $secondary-color-grey-dark;
-		
+		font-size: 16px;
+		font-weight: 600;
+    letter-spacing: 0.6px;
+    color: $secondary-color-grey-dark;
+		transition: 0.3s ease;
+
 		&-link {
 			color: $main-color-button;
+
+			&:hover {
+				color: $main-color-medium;
+				text-decoration: underline;
+			}
 		}
 	}
-
+		
 	&__stats {
 		display: flex;
+		position: relative;
 
 		margin: 15px 0;
 	}
 
 	&__container {
 		display: flex;
-		flex-direction: column;
 		padding: 10px;
 		background-color: #fff;
 		border-radius: 8px;
 		border: 1px solid #ccc;
+	}
+
+	&__balance {
+		flex-direction: column;
+		width: 320px;
+    min-width: 320px;
+    z-index: 2;
+    margin-right: 30px;
+	}
+
+	&__price {
+		flex-direction: row;
+		width: 100%;
 	}
 
 	&__name {
@@ -53,15 +74,16 @@
 	}
 
 	&__amount {
-		font-weight: 500;
+		font-weight: 600;
 		font-size: 24px;
 	}
 
 	&__state {
 		font-size: 14px;
+		font-weight: 600;
+    color: $secondary-color-text;
 
 		span {
-			font-weight: 600;
 			color: $down-color;
 		}
 	}

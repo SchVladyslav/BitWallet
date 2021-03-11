@@ -16,9 +16,9 @@
 }
 
 .components-wrapper {
-  display: flex;
-  width: 100%;
-  padding: 16px 20px;
+  width: calc(100% - 250px);
+  max-width: calc(100% - 250px);
+  padding: 16px 30px;
 }
 
 .header {
@@ -90,8 +90,10 @@
     li {
       display: flex;
       align-items: center;
+      height: 48px;
+      font-size: 16px;
       padding: 10px 15px;
-      border-radius: 8px;
+      border-radius: 4px;
       font-weight: 600;
       color: $secondary-color-grey-dark;
       transition: ease 0.3s;
@@ -116,7 +118,6 @@
 
   &__title,
   &__balance {
-    margin-left: 15px;
     font-weight: 600;
   }
 
@@ -126,6 +127,8 @@
   }
 
   &__balance {
+    position: relative;
+    margin-left: 15px;
     font-size: 24px;
   }
 
@@ -152,7 +155,7 @@
 
     li {
       & + li {
-        margin-top: 5px;
+        margin-top: 10px;
       }
     }
   }

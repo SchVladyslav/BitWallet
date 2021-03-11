@@ -22,7 +22,7 @@
   </div>
   <ul class="currency__transactions">
     <li
-      *ngFor="let block of blocks; index as i; trackBy: trackBy"
+      *ngFor="let block of chain; index as i; trackBy: trackBy"
       (click)="selectedBlock(block)"
     >
       <app-block-view [block]="block" [transaction]="block.transactions[0]">

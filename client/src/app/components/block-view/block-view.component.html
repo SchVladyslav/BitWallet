@@ -11,15 +11,15 @@
   <div class="transaction__address-wrapper">
     <p class="transaction__to">
       <span>To:</span>
-      <span>{{ transaction.toAddress }}</span>
+      <span>{{ transaction?.toAddress || 'Genesis block' }}</span>
     </p>
     <p class="transaction__from">
       <span>From:</span>
-      <span>{{ transaction.fromAddress }}</span>
+      <span>{{ transaction?.fromAddress || 'Genesis block' }}</span>
     </p>
   </div>
   <div class="transaction__amount-wrapper">
     <span class="transaction__amount">0.0 BTC</span>
-    <span class="transaction__price">{{ transaction.amount | currency: "USD" }}</span>
+    <span class="transaction__price">{{ transaction?.amount | currency: "USD" }}</span>
   </div>
 </div>

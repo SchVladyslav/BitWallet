@@ -1,43 +1,61 @@
 <div class="page-wrapper">
-	<header class="header">
-		<app-logo></app-logo>
-		<div class="header__nav-wrapper">
-			<nav class="nav">
-				<ul class="nav__list">
-					<li (click)="openSendModal()">
-						<img class="icon" src="../../../assets//icons/svg/icon-Send.svg" alt="Send">
-						<a class="item__text">Send</a>
-					</li>
-					<li (click)="openRequestModal()">
-						<img class="icon" src="../../../assets//icons/svg/icon-Request.svg" alt="Request">
-						<a class="item__text">Request</a>
-					</li>
-				</ul>
-			</nav>
-			<div class="header__settings-wrapper">
-				<app-settings-dropdown></app-settings-dropdown>
-			</div>
-		</div>
-	</header>
-	<main class="main">
-		<aside class="aside">
-			<h6 class="aside__title">Total Balance</h6>
-			<span class="aside__balance">{{balance | currency: "USD"}} </span>
-			<ul class="crypto__list">
-				<li 
-					*ngFor="let link of links" 
-					[routerLink]="[link.url]"
-					routerLinkActive="active"
-					class={{link.ticker}}
-				>
-					<img class="icon" src={{link.img}} alt={{link.name}}>
-					<p>{{link.name}}</p>
-				</li>			
-			</ul>
-		</aside>
-		<section class="components-wrapper">
-			<app-notification-modal></app-notification-modal>
-			<router-outlet></router-outlet>
-		</section>
-	</main>
+  <header class="header">
+    <app-logo></app-logo>
+    <div class="header__nav-wrapper">
+      <nav class="nav">
+        <ul class="nav__list">
+          <li (click)="openSendModal()">
+            <img
+              class="icon"
+              src="../../../assets//icons/svg/icon-Send.svg"
+              alt="Send"
+            />
+            <a class="item__text">Send</a>
+          </li>
+          <li (click)="openRequestModal()">
+            <img
+              class="icon"
+              src="../../../assets//icons/svg/icon-Request.svg"
+              alt="Request"
+            />
+            <a class="item__text">Request</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__settings-wrapper">
+        <app-settings-dropdown></app-settings-dropdown>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <aside class="aside">
+			<div class="aside__balance">
+      	<h6 class="aside__title">Total Balance</h6>
+        <span>{{ balance | currency: "USD" }} </span>
+        <ngx-spinner
+          bdColor="rgba(255, 255, 255, 0.9)"
+          color="rgb(10, 132, 255)"
+          size="medium"
+          type="ball-clip-rotate"
+          [fullScreen]="false"
+					[name]="spinnerName"
+        ></ngx-spinner>
+      </div>
+      <ul class="crypto__list">
+        <li
+          *ngFor="let link of links"
+          [routerLink]="[link.url]"
+          routerLinkActive="active"
+          class="{{ link.ticker }}"
+        >
+          <img class="icon" src="{{ link.img }}" alt="{{ link.name }}" />
+          <p>{{ link.name }}</p>
+        </li>
+      </ul>
+    </aside>
+    <section class="components-wrapper">
+      <app-notification-modal></app-notification-modal>
+      <router-outlet></router-outlet>
+    </section>
+  </main>
 </div>
