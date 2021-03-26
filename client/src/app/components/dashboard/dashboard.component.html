@@ -2,7 +2,7 @@
   <section class="balance">
     <div class="title__wrapper">
       <h4 class="balance__title">Total Balance</h4>
-      <span class="balance__value">$4,160.63</span>
+      <span class="balance__value">{{ balance | currency: "USD" }} </span>
     </div>
     <ul class="crypto__list">
       <li class="btc">
@@ -81,3 +81,10 @@
     </div>
   </section>
 </div>
+<ngx-spinner
+  bdColor="rgba(255, 255, 255, 0.9)"
+  color="rgb(10, 132, 255)"
+  size="medium"
+  type="ball-clip-rotate"
+  [fullScreen]="false"
+></ngx-spinner>

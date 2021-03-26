@@ -31,14 +31,10 @@ export class SendModalComponent extends AbstractPageDirective implements OnInit 
 
   initSendForm(): void {
     this.sendForm = new FormGroup({
-      toAddress: new FormControl('', Validators.required),
+      toAddress: new FormControl('', [Validators.required, Validators.minLength(32), Validators.maxLength(32)]),
       fromAddress: new FormControl(this.walletType, Validators.required),
       amount: new FormControl('', Validators.required),
     });
-  }
-
-  closeModal(): void {
-    this.bsModalRef.hide();
   }
 
   createTransaction(): void {
@@ -51,8 +47,15 @@ export class SendModalComponent extends AbstractPageDirective implements OnInit 
         this.blockchainService.getBlockchainInstance();
         this.blockchainService.getBalance();
       },
-      (error) => this.notificationService.show(error.error.message, 'error')
+      (error) => {
+        this.bsModalRef.hide();
+        this.notificationService.show(error.error.message, 'error');
+      }
     );
+  }
+
+  closeModal(): void {
+    this.bsModalRef.hide();
   }
 
   get isSendFormValid(): boolean {

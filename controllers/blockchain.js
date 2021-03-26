@@ -30,11 +30,19 @@ module.exports.blockchain = async function (req, res) {
 	}
 }
 
-module.exports.transaction = async function (req, res) {
-	let newTransaction = new Transaction();
-	newTransaction.fromAddress = key.getPublic('hex');
-	newTransaction.toAddress = req.body.toAddress;
-	newTransaction.amount = req.body.amount;
+module.exports.transactions = async function (req, res) {
+	let newTransaction = new Transaction(key.getPublic('hex'), req.body.toAddress, req.body.amount);
+	newTransaction.signTransaction(key);
+	coin.addTransaction(newTransaction);
+	try {
+		res.status(statuses.createdStatus).json(newTransaction);
+	} catch (error) {
+		errorHandler(res, error);
+	}
+}
+
+module.exports.recieve = async function (req, res) {
+	let newTransaction = new Transaction(req.body.fromAddress, key.getPublic('hex'), req.body.amount);
 	newTransaction.signTransaction(key);
 	coin.addTransaction(newTransaction);
 	try {

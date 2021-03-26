@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { takeUntil } from 'rxjs/operators';
+import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
+import { AbstractPageDirective } from 'src/app/shared/abstract-page/abstract-page.directive';
 import { NotificationService } from '../../services/notification.service';
 
 @Component({
@@ -7,12 +10,34 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  bsModalRef: BsModalRef;
+export class DashboardComponent extends AbstractPageDirective implements OnInit {
 
-  constructor(private modalService: BsModalService, private notificationService: NotificationService) { }
+  public balance: number = 0;
+
+  constructor(
+    private blockchainService: BlockchainService,
+    private spinner: NgxSpinnerService,
+    private notificationService: NotificationService
+  ) {
+    super()
+  }
 
   ngOnInit(): void {
+    this.getBalance();
+  }
+
+  private getBalance(): void {
+    this.spinner.show();
+    this.blockchainService.balanceSubject
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(balance => {
+        this.balance = balance;
+        this.spinner.hide();
+      },
+        (error) => {
+          this.spinner.hide();
+          this.notificationService.show(error.error.message, 'error');
+        });
   }
 
 }

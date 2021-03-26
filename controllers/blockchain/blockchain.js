@@ -16,10 +16,9 @@ class Transaction {
 	// You can only send a transaction from the wallet that is linked to your
   // key. So here we check if the fromAddress matches your publicKey
 	signTransaction(signingKey) {
-		if (signingKey.getPublic('hex') !== this.fromAddress) {
-			throw new Error('You cannot sign transaction for other wallets!');
-		}
-
+		// if (signingKey.getPublic('hex') !== this.fromAddress) {
+		// 	throw new Error('You cannot sign transaction for other wallets!');
+		// }
 		const hashTx = this.calculateHash();
 		const sig = signingKey.sign(hashTx, 'base64');
 		this.signature = sig.toDER('hex');
@@ -31,8 +30,15 @@ class Transaction {
 			throw new Error('No signature in this transaction');
 		}
 
-		const publicKey = ec.keyFromPublic(this.fromAddress, 'hex');
-		return publicKey.verify(this.calculateHash(), this.signature);
+		try {
+			let publicKey;
+			this.toAddress.length === 32
+			? publicKey = ec.keyFromPublic(this.fromAddress, 'hex')
+			: publicKey = ec.keyFromPublic(this.toAddress, 'hex');
+			return publicKey.verify(this.calculateHash(), this.signature);
+		} catch(error) {
+			throw new Error(error);
+		}
 	}
 }
 
@@ -119,11 +125,11 @@ class Blockchain {
 		for (const block of this.chain) {
 			for (const trans of block.transactions) {
 				if (trans.fromAddress === address) {
-					balance -= trans.amount;
+					balance -= Number(trans.amount);
 				}
 
 				if (trans.toAddress === address) {
-					balance += trans.amount;
+					balance += Number(trans.amount);
 				}
 			}
 		}

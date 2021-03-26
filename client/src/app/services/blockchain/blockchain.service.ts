@@ -63,7 +63,11 @@ export class BlockchainService extends AbstractPageDirective {
   }
 
   public addTransaction(transaction: Transaction): Observable<Transaction> {
-    return this.http.post<Transaction>(`${this.baseUrl}/transaction`, transaction);
+    return this.http.post<Transaction>(`${this.baseUrl}/transactions`, transaction);
+  }
+
+  public recieveTransaction(recieveTransaction: Transaction): Observable<Transaction> {
+    return this.http.post<Transaction>(`${this.baseUrl}/transactions/recieve`, recieveTransaction);
   }
 
   private minePendingTransactions() {

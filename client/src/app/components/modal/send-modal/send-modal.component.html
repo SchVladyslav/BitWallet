@@ -14,28 +14,87 @@
       </div>
       <div class="modal__block-wrapper">
         <label class="modal__label">From</label>
-				<app-select-currency [walletType]="walletType"></app-select-currency>
+        <app-select-currency [walletType]="walletType"></app-select-currency>
       </div>
     </div>
-    <label class="modal__label" for="to">To</label>
-    <input
-      formControlName="toAddress"
-      class="modal__input"
-      id="to"
-      type="text"
-      placeholder="Paste, scan or select destination"
-    />
-    <label class="modal__label" for="amount">Amount</label>
-    <div class="modal__amount-wrapper">
+    <div class="form-group">
+      <div class="label__group">
+        <label class="form__label" for="to">To</label>
+        <span
+          *ngIf="
+            sendForm.get('toAddress').invalid &&
+            sendForm.get('toAddress').touched
+          "
+          class="form__validation"
+        >
+          <span *ngIf="sendForm.get('toAddress').errors['required']"
+            >Required</span
+          >
+          <span *ngIf="sendForm.get('toAddress').errors['minlength']">
+            Required
+            {{
+              sendForm.get("toAddress").errors['minlength']['requiredLength']
+            }}
+            characters. Now
+            {{ sendForm.get("toAddress").errors['minlength']['actualLength'] }}
+          </span>
+          <span *ngIf="sendForm.get('toAddress').errors['maxlength']">
+            Max characters
+            {{ sendForm.get('toAddress').errors['maxlength']['requiredLength'] }}
+          </span>
+        </span>
+      </div>
       <input
-        formControlName="amount"
-        class="modal__input modal__amount"
-        id="amount"
+        formControlName="toAddress"
+        class="modal__input"
+        id="to"
         type="text"
-        placeholder="$0.00"
+        placeholder="Paste, scan or select destination"
+        [ngClass]="{
+          invalid:
+            sendForm.get('toAddress').invalid &&
+            sendForm.get('toAddress').touched
+        }"
       />
-      <span class="modal__sign">=</span>
-      <input class="modal__input modal__currency" type="text" placeholder="0" />
+    </div>
+    <div class="form-group">
+      <div class="label__group">
+        <label class="form__label" for="amount">Amount</label>
+        <span
+          *ngIf="
+            sendForm.get('amount').invalid &&
+            sendForm.get('amount').touched
+          "
+          class="form__validation"
+        >
+          <span *ngIf="sendForm.get('amount').errors['required']"
+            >Required</span
+          >
+        </span>
+      </div>
+      <div class="modal__amount-wrapper">
+        <input
+          formControlName="amount"
+          class="modal__input modal__amount"
+          id="amount"
+          type="text"
+          placeholder="$0.00"
+          [ngClass]="{
+            invalid:
+              sendForm.get('amount').invalid && sendForm.get('amount').touched
+          }"
+        />
+        <span class="modal__sign">=</span>
+        <input
+          class="modal__input modal__currency"
+          type="text"
+          placeholder="0"
+          [ngClass]="{
+            invalid:
+              sendForm.get('amount').invalid && sendForm.get('amount').touched
+          }"
+        />
+      </div>
     </div>
     <label class="modal__label" for="desc">Description</label>
     <textarea
@@ -45,7 +104,13 @@
       placeholder="What's this transaction for? (optional)"
     ></textarea>
     <p class="modal__text">Estimated confirmation time 1+ hour</p>
-    <button class="modal__button" [disabled]='isSendFormValid' (click)="createTransaction()">Continue</button>
+    <button
+      class="modal__button"
+      [disabled]="isSendFormValid"
+      (click)="createTransaction()"
+    >
+      Continue
+    </button>
   </form>
 </div>
 <div class="bg-layout"></div>
