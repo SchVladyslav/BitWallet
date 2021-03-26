@@ -23,8 +23,8 @@ export class SiteLayoutComponent extends AbstractPageDirective implements OnInit
   links: NavigationList[] = [
     { url: '/dashboard', name: 'Dashboard', ticker: 'dashboard', img: '../../../assets/icons/svg/icon-dashboard.svg' },
     { url: '/btc', name: 'Bitcoin', ticker: 'btc', img: '../../../assets/icons/svg/icon-Bitcoin.svg' },
-    { url: '/ether', name: 'Ether', ticker: 'eth', img: '../../../assets/icons/svg/icon-Ethereum.svg' },
-    { url: '/ripple', name: 'Ripple', ticker: 'xrp', img: '../../../assets/icons/svg/icon-Xrp.svg' },
+    { url: '/eth', name: 'Ether', ticker: 'eth', img: '../../../assets/icons/svg/icon-Ethereum.svg' },
+    { url: '/xrp', name: 'Ripple', ticker: 'xrp', img: '../../../assets/icons/svg/icon-Xrp.svg' },
   ];
 
   constructor(

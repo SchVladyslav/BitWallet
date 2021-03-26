@@ -2,13 +2,13 @@
   <div class="currency__header-wrapper">
     <img
       class="icon"
-      src="../../../../assets/icons/svg/icon-Bitcoin.svg"
-      alt="Bitcoin"
+      src="{{ currentCurrencyConfig.img }}"
+      alt="{{ currentCurrencyConfig.name }}"
     />
-    <h2 class="currency__title">Bitcoin</h2>
+    <h2 class="currency__title">{{ currentCurrencyConfig.name }}</h2>
   </div>
   <h3 class="currency__subtitle">
-    Bitcoin (BTC) is the original crypto and the internet's digital currency.
+    {{ currentCurrencyConfig.description }}
     <a
       href="https://www.blockchain.com/learning-portal/bitcoin-faq"
       target="_blank"
@@ -19,7 +19,9 @@
   </h3>
   <div class="currency__stats">
     <div class="currency__container currency__balance">
-      <h4 class="currency__name">BTC Balance</h4>
+      <h4 class="currency__name">
+        {{ currentCurrencyConfig.ticker }} Balance
+      </h4>
       <span class="currency__amount">$2.353.29</span>
       <p class="currency__state">
         <span>-$50.24 (2.30)%</span>
@@ -28,7 +30,7 @@
     </div>
     <div class="currency__container currency__price">
       <div>
-        <h4 class="currency__name">BTC Price</h4>
+        <h4 class="currency__name">{{ currentCurrencyConfig.ticker }} Price</h4>
         <span class="currency__amount">$10,856.94</span>
         <p class="currency__state">
           <span>$529.27 (5.12)%</span>

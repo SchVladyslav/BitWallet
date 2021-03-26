@@ -20,6 +20,8 @@ const routes: Routes = [
   { path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'btc', component: CurrencyLayoutComponent },
+    { path: 'eth', component: CurrencyLayoutComponent },
+    { path: 'xrp', component: CurrencyLayoutComponent },
     { path: 'preferences', component: PreferencesComponent }
   ]},
 ];
