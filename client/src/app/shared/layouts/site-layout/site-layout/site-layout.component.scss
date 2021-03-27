@@ -145,11 +145,13 @@
       background-color: $hover-color-orange;
     }
 
-    .eth:hover {
+    .eth:hover,
+    .eth.active {
       background-color: $hover-color-purple;
     }
 
-    .xrp:hover {
+    .xrp:hover,
+    .xrp.active {
       background-color: $hover-color-green;
     }
 

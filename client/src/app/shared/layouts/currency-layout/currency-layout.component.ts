@@ -39,7 +39,7 @@ export class CurrencyLayoutComponent extends AbstractPageDirective implements On
   }
 
   private setCurrentCurrencyName(): void {
-    const currencyName: string = this.router.url.slice(1).toUpperCase()
+    const currencyName: string = this.router.url.slice(1).toUpperCase();
     this.currentCurrencyConfig = CurrencyConfig[currencyName];
   }
 

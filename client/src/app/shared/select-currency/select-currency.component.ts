@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CryptoList } from 'src/app/interfaces/CryptoList';
 
 @Component({
@@ -9,13 +9,14 @@ import { CryptoList } from 'src/app/interfaces/CryptoList';
 export class SelectCurrencyComponent implements OnInit {
 
   cryptoList: CryptoList[];
-  selectedCrypto: string;
   @Input() walletType: string;
   @ViewChild('img', { static: false }) image;
+  @Output() selectedCrypto: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
+    this.selectedCrypto.emit('BTC');
     this.cryptoList = [
       { name: 'Bitcoin', ticker: 'BTC', imageUrl: '../../../assets/icons/svg/icon-Bitcoin.svg' },
       { name: 'Ether', ticker: 'ETH', imageUrl: '../../../assets/icons/svg/icon-Ethereum.svg' },
@@ -30,11 +31,11 @@ export class SelectCurrencyComponent implements OnInit {
   }
 
   selectChangeHandler($event: any): void {
-    this.selectedCrypto = $event.target.value;
-    this.changeCryptoImage(this.selectedCrypto);
+    this.selectedCrypto.emit($event.target.value);
+    this.changeCryptoImage($event.target.value);
   }
 
-  changeCryptoImage(selectedCrypto) {
+  changeCryptoImage(selectedCrypto: string) {
     for (const crypto of this.cryptoList) {
       if (selectedCrypto === crypto.ticker) {
         this.image.nativeElement.src = crypto.imageUrl;

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { takeUntil } from 'rxjs/operators';
-import { Chain } from 'src/app/interfaces/Blockchain.interface';
+import { Blockchain, Chain } from 'src/app/interfaces/Blockchain.interface';
 import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AbstractPageDirective } from 'src/app/shared/abstract-page/abstract-page.directive';
@@ -20,6 +21,7 @@ export class BlockchainViewerComponent extends AbstractPageDirective implements 
     private blockchainService: BlockchainService,
     private spinner: NgxSpinnerService,
     private notificationService: NotificationService,
+    private router: Router
   ) {
     super();
   }
@@ -34,7 +36,7 @@ export class BlockchainViewerComponent extends AbstractPageDirective implements 
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         blockchain => {
-          this.chain = blockchain?.chain  // getBlocks(),
+          this.chain = this.filterTransactionsByCurrency(blockchain)  // getBlocks(),
           console.log(blockchain);
           this.spinner.hide();
         },
@@ -42,6 +44,21 @@ export class BlockchainViewerComponent extends AbstractPageDirective implements 
           this.spinner.hide();
           this.notificationService.show(error.error.message, 'error');
         });
+  }
+
+  private filterTransactionsByCurrency(blockchain: Blockchain): Chain[] {
+    const newChain: Chain[] = [];
+    const currencyName: string = this.router.url.slice(1).toUpperCase()
+    blockchain?.chain
+    .forEach(chainItem => {
+      console.log(chainItem)
+      chainItem.transactions.forEach(ts => {
+        if (ts.currency === currencyName) {
+          newChain.push(chainItem);
+        } 
+      })
+    })
+    return newChain;
   }
 
   public selectedBlock(block: Chain) {

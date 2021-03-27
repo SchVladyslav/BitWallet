@@ -3,14 +3,15 @@ const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 
 class Transaction {
-	constructor(fromAddress, toAddress, amount) {
+	constructor(fromAddress, toAddress, amount, currency = 'BTC') {
 		this.fromAddress = fromAddress;
 		this.toAddress = toAddress;
 		this.amount = amount;
+		this.currency = currency;
 	}
 
 	calculateHash() {
-		return SHA256(this.fromAddress + this.toAddress + this.amount).toString();
+		return SHA256(this.fromAddress + this.toAddress + this.amount + this.currency).toString();
 	}
 
 	// You can only send a transaction from the wallet that is linked to your
@@ -87,7 +88,7 @@ class Blockchain {
 	}
 
 	createGenesisBlock() {
-		return new Block("01/01/2021", "Genesis block", "0");
+		return new Block("01/01/2021", [new Transaction('Genesis Block', 'Genesis Block', 0)], "0");
 	}
 
 	getLatestBlock() {

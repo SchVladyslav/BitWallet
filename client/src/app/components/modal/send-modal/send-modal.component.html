@@ -10,11 +10,11 @@
     <div class="block-wrapper">
       <div class="modal__block-wrapper">
         <label class="modal__label">Currency</label>
-        <app-select-currency></app-select-currency>
+        <app-select-currency (selectedCrypto)="selectedCryptoCurrency($event)"></app-select-currency>
       </div>
       <div class="modal__block-wrapper">
         <label class="modal__label">From</label>
-        <app-select-currency [walletType]="walletType"></app-select-currency>
+        <app-select-currency (selectedCrypto)="selectedCryptoWallet($event)"></app-select-currency>
       </div>
     </div>
     <div class="form-group">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { takeUntil } from 'rxjs/operators';
 import { WalletType } from 'src/app/interfaces/WalletType.interface';
@@ -16,9 +16,11 @@ export class SendModalComponent extends AbstractPageDirective implements OnInit 
 
   public walletType: string = WalletType.BTC;
   public sendForm: FormGroup;
+  private selectedCurrency: string;
+  private selectedWallet: string;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    private bsModalRef: BsModalRef,
     private blockchainService: BlockchainService,
     private notificationService: NotificationService,
   ) { 
@@ -34,6 +36,7 @@ export class SendModalComponent extends AbstractPageDirective implements OnInit 
       toAddress: new FormControl('', [Validators.required, Validators.minLength(32), Validators.maxLength(32)]),
       fromAddress: new FormControl(this.walletType, Validators.required),
       amount: new FormControl('', Validators.required),
+      currency: new FormControl('')
     });
   }
 
@@ -52,6 +55,18 @@ export class SendModalComponent extends AbstractPageDirective implements OnInit 
         this.notificationService.show(error.error.message, 'error');
       }
     );
+  }
+
+  public selectedCryptoCurrency(event): void {
+    this.selectedCurrency = event;
+    this.sendForm.patchValue({
+      currency: this.selectedCurrency
+    });
+    console.log(this.sendForm.get('currency').value);
+  }
+
+  public selectedCryptoWallet(event): void {
+    this.selectedWallet = event;
   }
 
   closeModal(): void {

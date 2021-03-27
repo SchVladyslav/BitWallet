@@ -14,6 +14,11 @@
     &:focus {
         color: blue;
     }
+
+    p {
+        margin-left: 15px;
+        font-weight: 600;
+    }
 }
 
 .select__icon {

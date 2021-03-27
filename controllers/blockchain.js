@@ -31,7 +31,7 @@ module.exports.blockchain = async function (req, res) {
 }
 
 module.exports.transactions = async function (req, res) {
-	let newTransaction = new Transaction(key.getPublic('hex'), req.body.toAddress, req.body.amount);
+	let newTransaction = new Transaction(key.getPublic('hex'), req.body.toAddress, req.body.amount, req.body.currency);
 	newTransaction.signTransaction(key);
 	coin.addTransaction(newTransaction);
 	try {
@@ -42,7 +42,7 @@ module.exports.transactions = async function (req, res) {
 }
 
 module.exports.recieve = async function (req, res) {
-	let newTransaction = new Transaction(req.body.fromAddress, key.getPublic('hex'), req.body.amount);
+	let newTransaction = new Transaction(req.body.fromAddress, key.getPublic('hex'), req.body.amount, req.body.currency);
 	newTransaction.signTransaction(key);
 	coin.addTransaction(newTransaction);
 	try {

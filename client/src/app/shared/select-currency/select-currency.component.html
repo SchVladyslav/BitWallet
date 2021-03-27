@@ -1,8 +1,15 @@
 <div class="select__wrapper">
-  <ng-container *ngIf="walletType else currencyList">
-    <select class="select__crypto">
-      <option>{{walletType}}</option>
+  <img class="select__icon" #img />
+    <select (change)="selectChangeHandler($event)" class="select__crypto">
+      <option *ngFor="let crypto of cryptoList" value="{{ crypto.ticker }}">
+        {{ crypto.name }} ({{ crypto.ticker }})
+      </option>
     </select>
+  <!-- <ng-container *ngIf="walletType else currencyList">
+    <p>{{walletType}}</p>
+     <select class="select__crypto">
+      <option>{{walletType}}</option>
+    </select> 
   </ng-container>
   <ng-template #currencyList>
 		<img class="select__icon" #img />
@@ -11,5 +18,5 @@
         {{ crypto.name }} ({{ crypto.ticker }})
       </option>
     </select>
-  </ng-template>
+  </ng-template> -->
 </div>

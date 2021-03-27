@@ -16,6 +16,7 @@ export class RequestModalComponent extends AbstractPageDirective implements OnIn
 
   public requestForm: FormGroup;
   public walletType: string = WalletType.BTC;
+  // private selectedCurrency: string;
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -34,6 +35,7 @@ export class RequestModalComponent extends AbstractPageDirective implements OnIn
       fromAddress: new FormControl('', [Validators.required, Validators.minLength(32), Validators.maxLength(32)]),
       amount: new FormControl('', Validators.required),
       description: new FormControl(''),
+      currency: new FormControl('')
     });
   }
   
@@ -52,6 +54,12 @@ export class RequestModalComponent extends AbstractPageDirective implements OnIn
         this.notificationService.show(error.error.message, 'error');
       }
     );
+  }
+
+  public selectedCryptoCurrency(event): void {
+    this.requestForm.patchValue({
+      currency: event
+    });
   }
 
   closeModal(): void {
