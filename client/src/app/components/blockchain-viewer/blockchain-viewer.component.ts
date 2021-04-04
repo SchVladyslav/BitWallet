@@ -36,8 +36,7 @@ export class BlockchainViewerComponent extends AbstractPageDirective implements 
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         blockchain => {
-          this.chain = this.filterTransactionsByCurrency(blockchain)  // getBlocks(),
-          console.log(blockchain);
+          this.chain = this.filterTransactionsByCurrency(blockchain)
           this.spinner.hide();
         },
         (error) => {
@@ -51,7 +50,6 @@ export class BlockchainViewerComponent extends AbstractPageDirective implements 
     const currencyName: string = this.router.url.slice(1).toUpperCase()
     blockchain?.chain
     .forEach(chainItem => {
-      console.log(chainItem)
       chainItem.transactions.forEach(ts => {
         if (ts.currency === currencyName) {
           newChain.push(chainItem);

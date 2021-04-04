@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 350px;
+    max-width: 370px;
     width: 100%;
 
     padding: 20px 15px;
@@ -17,16 +17,17 @@
     box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 8px;
 
     background-color: #fff;
+    z-index: 100;
     
     &__message {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 600;
         color: #50596b;
     }
 
     &__close {
         margin-left: 30px;
-        font-size: 11px;
+        font-size: 13px;
         font-weight: 600;
         color: #50596b;
         

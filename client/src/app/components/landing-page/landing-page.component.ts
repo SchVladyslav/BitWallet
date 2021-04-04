@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { CoinCup } from 'src/app/interfaces/CoinCup.interface';
+import { CoinCupContent } from 'src/app/interfaces/CoinCup.interface';
 import { CoinMarketCupService } from '../../services/coinmarketcup/coinmarketcup.service';
 
 @Component({
@@ -10,10 +9,11 @@ import { CoinMarketCupService } from '../../services/coinmarketcup/coinmarketcup
 })
 export class LandingPageComponent implements OnInit {
 
-  coinCup$: Observable<CoinCup> = this.coinMarketCupService.getCoinMarketCup();
+  public coinCup: CoinCupContent;
 
   constructor(private coinMarketCupService: CoinMarketCupService) { }
 
   ngOnInit(): void {
+    this.coinMarketCupService.getCurrencyCoinCup().subscribe(coinCup => this.coinCup = coinCup);
   }
 }

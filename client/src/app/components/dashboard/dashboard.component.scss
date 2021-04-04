@@ -16,6 +16,7 @@
 .balance,
 .diagram {
   display: flex;
+  position: relative;
   width: 100%;
   max-width: 600px;
   padding: 24px;
@@ -23,14 +24,23 @@
   border-radius: 8px;
 }
 
+:host {
+  ::ng-deep {
+    .total-balance {
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 0;
+    }
+
+    .title {
+      font-size: 16px;
+    }
+  }
+}
+
 .balance {
   flex-direction: column;
-
-  .title__wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
   &__title {
     font-weight: 600;
@@ -129,7 +139,8 @@
     margin-top: 20px;
 
     .button {
-      @include button(15px, 40px, 14px, $main-color-button);
+      width: 170px;
+      @include button(15px, 20px, 14px, $main-color-button);
     }
 
     .button + .button {

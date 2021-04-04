@@ -31,24 +31,24 @@
     <button type="button" class="main__button" routerLink="/login">
       Get Started
     </button>
-    <ul class="currency__list" *ngIf="coinCup$ | async as coin">
+    <ul class="currency__list" *ngIf="coinCup">
       <li>
         <div class="currency__name">
           <img class="icon" src="../../../assets/icons/svg/icon-Bitcoin.svg" />
-          <h4>Bitcoin</h4>
-          <span>BTC</span>
+          <h4>{{coinCup.BTC.name}}</h4>
+          <span>{{coinCup.BTC.symbol}}</span>
         </div>
         <div class="currency__price">
           <span class="price">{{
-            coin.BTC[0].quote.USD.price | currency: "USD"
+            coinCup.BTC.price | currency: "USD"
           }}</span>
         </div>
         <div class="currency__chart">
           <span
             class="percent"
-            [ngClass]="{ down: coin.BTC[0].quote.USD.percent_change_24h < 0 }"
+            [ngClass]="{ down: coinCup.BTC.change < 0 }"
           >
-            {{ coin.BTC[0].quote.USD.percent_change_24h | number: "1.1-2" }}%
+            {{ coinCup.BTC.change | number: "1.1-2" }}%
           </span>
           <div class="chart">
             <img src="../../../assets/icons/graph.png" />
@@ -58,20 +58,20 @@
       <li>
         <div class="currency__name">
           <img class="icon" src="../../../assets/icons/svg/icon-Ethereum.svg" />
-          <h4>Ethereum</h4>
-          <span>ETH</span>
+          <h4>{{coinCup.ETH.name}}</h4>
+          <span>{{coinCup.ETH.symbol}}</span>
         </div>
         <div class="currency__price">
           <span class="price">{{
-            coin.ETH[0].quote.USD.price | currency: "USD"
+            coinCup.ETH.price | currency: "USD"
           }}</span>
         </div>
         <div class="currency__chart">
           <span
             class="percent"
-            [ngClass]="{ down: coin.ETH[0].quote.USD.percent_change_24h < 0 }"
+            [ngClass]="{ down: coinCup.ETH.change < 0 }"
           >
-            {{ coin.ETH[0].quote.USD.percent_change_24h | number: "1.1-2" }}%
+            {{ coinCup.ETH.change | number: "1.1-2" }}%
           </span>
           <div class="chart">
             <img src="../../../assets/icons/graph.png" />
@@ -81,20 +81,20 @@
       <li>
         <div class="currency__name">
           <img class="icon" src="../../../assets/icons/svg/icon-Xrp.svg" />
-          <h4>Ripple</h4>
-          <span>XRP</span>
+          <h4>{{coinCup.XRP.name}}</h4>
+          <span>{{coinCup.XRP.symbol}}</span>
         </div>
         <div class="currency__price">
           <span class="price">{{
-            coin.XRP[0].quote.USD.price | currency: "USD"
+            coinCup.XRP.price | currency: "USD"
           }}</span>
         </div>
         <div class="currency__chart">
           <span
             class="percent"
-            [ngClass]="{ down: coin.XRP[0].quote.USD.percent_change_24h < 0 }"
+            [ngClass]="{ down: coinCup.XRP.change < 0 }"
           >
-            {{ coin.XRP[0].quote.USD.percent_change_24h | number: "1.1-2" }}%
+            {{ coinCup.XRP.change | number: "1.1-2" }}%
           </span>
           <div class="chart">
             <img src="../../../assets/icons/graph.png" />

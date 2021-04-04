@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { takeUntil } from 'rxjs/operators';
 import { RequestModalComponent } from 'src/app/components/modal/request-modal/request-modal.component';
 import { SendModalComponent } from 'src/app/components/modal/send-modal/send-modal.component';
 import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
@@ -14,7 +13,7 @@ import { NavigationList } from '../../../../interfaces/NavigationList';
   templateUrl: './site-layout.component.html',
   styleUrls: ['./site-layout.component.scss']
 })
-export class SiteLayoutComponent extends AbstractPageDirective implements OnInit {
+export class SiteLayoutComponent extends AbstractPageDirective implements AfterViewInit {
 
   public balance: number = 0;
   public spinnerName: string = 'asideSpinner';
@@ -31,27 +30,12 @@ export class SiteLayoutComponent extends AbstractPageDirective implements OnInit
     private modalService: BsModalService,
     private blockchainService: BlockchainService,
     private spinner: NgxSpinnerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
   ) {
     super()
   }
 
-  ngOnInit(): void {
-    this.getBalance();
-  }
-
-  private getBalance(): void {
-    this.spinner.show(this.spinnerName);
-    this.blockchainService.balanceSubject
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(balance => {
-        this.balance = balance;
-        this.spinner.hide(this.spinnerName);
-        },
-        (error) => {
-          this.spinner.hide(this.spinnerName);
-          this.notificationService.show(error.error.message, 'error');
-        });
+  ngAfterViewInit(): void {
   }
 
   public openSendModal(): void {

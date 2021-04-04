@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { CryptoList } from 'src/app/interfaces/CryptoList';
+import { ICryptoList } from 'src/app/interfaces/CryptoList';
+import { Currency } from 'src/app/interfaces/WalletType.interface';
+import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
+import { CryptoList } from '../../helpers/select-currency.config';
 
 @Component({
   selector: 'app-select-currency',
@@ -8,26 +11,29 @@ import { CryptoList } from 'src/app/interfaces/CryptoList';
 })
 export class SelectCurrencyComponent implements OnInit {
 
-  cryptoList: CryptoList[];
+  cryptoList: ICryptoList[];
+  currentGlobalCurrency: string;
   @Input() walletType: string;
   @ViewChild('img', { static: false }) image;
   @Output() selectedCrypto: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private blockchainService: BlockchainService) { }
 
   ngOnInit(): void {
-    this.selectedCrypto.emit('BTC');
-    this.cryptoList = [
-      { name: 'Bitcoin', ticker: 'BTC', imageUrl: '../../../assets/icons/svg/icon-Bitcoin.svg' },
-      { name: 'Ether', ticker: 'ETH', imageUrl: '../../../assets/icons/svg/icon-Ethereum.svg' },
-      { name: 'Ripple', ticker: 'XRP', imageUrl: '../../../assets/icons/svg/icon-Xrp.svg' }
-    ];
+    this.cryptoList = CryptoList;
   }
 
   ngAfterViewInit() {
-    if (this.image) {
+    if (this.image && !Currency[this.currentGlobalCurrency]) {
       this.image.nativeElement.src = this.cryptoList[0].imageUrl;
     }
+    this.initAndChangeSelectFromGlobal();
+  }
+
+  private initAndChangeSelectFromGlobal(): void {
+    this.currentGlobalCurrency = this.blockchainService.currentCurrencyLocation();
+    this.selectedCrypto.emit(Currency[this.currentGlobalCurrency] || 'BTC');
+    this.changeCryptoImage(Currency[this.currentGlobalCurrency]);
   }
 
   selectChangeHandler($event: any): void {

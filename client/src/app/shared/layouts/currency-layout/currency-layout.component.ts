@@ -14,17 +14,19 @@ import { CurrencyConfig } from '../../../helpers/currency.config';
 })
 export class CurrencyLayoutComponent extends AbstractPageDirective implements OnInit {
 
-  currentCurrencyConfig: ICurrencyConfig;
+  public currentCurrencyConfig: ICurrencyConfig;
+  private currencyName: string;
 
   constructor(
     private blockchainService: BlockchainService,
     private notificationService: NotificationService,
-    private router: Router 
+    private router: Router
   ) {
     super();
   }
 
   ngOnInit(): void {
+    this.currencyName = this.router.url.slice(1).toUpperCase();
     this.setCurrentCurrencyName();
     // .pipe(takeUntil(this.destroy$))
     // .subscribe(
@@ -39,8 +41,11 @@ export class CurrencyLayoutComponent extends AbstractPageDirective implements On
   }
 
   private setCurrentCurrencyName(): void {
-    const currencyName: string = this.router.url.slice(1).toUpperCase();
-    this.currentCurrencyConfig = CurrencyConfig[currencyName];
+    this.currentCurrencyConfig = CurrencyConfig[this.currencyName];
+  }
+
+  get balance(): number {
+    return this.blockchainService.getBalanceByCurrency(this.currencyName);
   }
 
 }

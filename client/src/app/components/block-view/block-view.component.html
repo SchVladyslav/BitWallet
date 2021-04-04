@@ -1,10 +1,15 @@
 <div class="transaction">
   <div class="transaction__type-wrapper">
     <div class="transaction-icon">
-      <span></span>
+      <span
+        class="icon"
+        [ngClass]="{ sent: checkWalletReciever === 'Sent' }"
+      ></span>
     </div>
     <div class="transaction__title">
-      <h4 class="transaction__type">Received BTC</h4>
+      <h4 class="transaction__type">
+        {{ checkWalletReciever }} {{ transactionCurrency }}
+      </h4>
       <time>{{ block.timestamp | date: "MMM d, y, h:mm a" }}</time>
     </div>
   </div>
@@ -19,7 +24,8 @@
     </p>
   </div>
   <div class="transaction__amount-wrapper">
-    <span class="transaction__amount">0.0 BTC</span>
-    <span class="transaction__price">{{ transaction?.amount | currency: "USD" }}</span>
+    <span class="transaction__amount"
+      >{{ transaction?.amount }} {{ transactionCurrency }}</span>
+    <span class="transaction__price">{{ currencyPrice  | currency: "USD" }}</span>
   </div>
 </div>

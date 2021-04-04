@@ -14,7 +14,7 @@
       </div>
       <div class="modal__block-wrapper">
         <label class="modal__label">From</label>
-        <app-select-currency (selectedCrypto)="selectedCryptoWallet($event)"></app-select-currency>
+        <app-select-currency ></app-select-currency>
       </div>
     </div>
     <div class="form-group">
@@ -78,6 +78,7 @@
           class="modal__input modal__amount"
           id="amount"
           type="text"
+          (input)="onAmountOrCrypto($event)"
           placeholder="$0.00"
           [ngClass]="{
             invalid:
@@ -86,9 +87,11 @@
         />
         <span class="modal__sign">=</span>
         <input
+          formControlName="cryptoAmount"
           class="modal__input modal__currency"
           type="text"
-          placeholder="0"
+          (input)="onAmountOrCrypto($event)"
+          placeholder="0.1"
           [ngClass]="{
             invalid:
               sendForm.get('amount').invalid && sendForm.get('amount').touched
@@ -98,6 +101,7 @@
     </div>
     <label class="modal__label" for="desc">Description</label>
     <textarea
+      formControlName="description"
       class="modal__input modal__description"
       id="desc"
       rows="3"

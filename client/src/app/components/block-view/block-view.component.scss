@@ -63,7 +63,7 @@
     border-radius: 16px;
     background: rgba(255, 155, 34, 0.15);
 
-    span {
+    .icon {
       display: flex;
       height: 22px;
       font-weight: 600;
@@ -73,9 +73,14 @@
       cursor: inherit;
     }
 
-    span::before {
+    .icon::before {
       content: $arrow-south-east;
       transform: translate(7%, -20%);
+    }
+
+    .sent.icon::before {
+      content: $arrow-north-east;
+      transform: translate(4%, -1%);
     }
   }
 

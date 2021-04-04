@@ -22,7 +22,7 @@
       <h4 class="currency__name">
         {{ currentCurrencyConfig.ticker }} Balance
       </h4>
-      <span class="currency__amount">$2.353.29</span>
+      <span class="currency__amount">{{ balance | currency: "USD" }}</span>
       <p class="currency__state">
         <span>-$50.24 (2.30)%</span>
         today

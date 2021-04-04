@@ -29,18 +29,7 @@
   </header>
   <main class="main">
     <aside class="aside">
-			<div class="aside__balance">
-      	<h6 class="aside__title">Total Balance</h6>
-        <span>{{ balance | currency: "USD" }} </span>
-        <ngx-spinner
-          bdColor="rgba(255, 255, 255, 0.9)"
-          color="rgb(10, 132, 255)"
-          size="medium"
-          type="ball-clip-rotate"
-          [fullScreen]="false"
-					[name]="spinnerName"
-        ></ngx-spinner>
-      </div>
+      <app-balance></app-balance>		
       <ul class="crypto__list">
         <li
           *ngFor="let link of links"

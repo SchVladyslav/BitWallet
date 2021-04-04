@@ -81,6 +81,7 @@
           class="modal__input modal__amount"
           id="amount"
           type="text"
+          (input)="onAmountOrCrypto($event)"
           placeholder="$0.00"
           [ngClass]="{
             invalid:
@@ -90,9 +91,11 @@
         />
         <span class="modal__sign">=</span>
         <input
+          formControlName="cryptoAmount"
           class="modal__input modal__currency"
           type="text"
-          placeholder="0"
+          (input)="onAmountOrCrypto($event)"
+          placeholder="0.1"
 					[ngClass]="{
             invalid:
               requestForm.get('amount').invalid &&
