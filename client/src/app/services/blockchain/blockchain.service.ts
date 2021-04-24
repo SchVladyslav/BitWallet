@@ -89,7 +89,7 @@ export class BlockchainService extends AbstractPageDirective {
           if (ts.currency === Currency.XRP) {
             ts.toAddress === this.walletKeys.publicKey
             ? this.xrpBalance += Number(ts.amount)
-            : this.xrpBalance += Number(ts.amount);
+            : this.xrpBalance -= Number(ts.amount);
           }
         })
       })
