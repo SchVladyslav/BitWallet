@@ -32,10 +32,19 @@ import { BlockViewComponent } from './components/block-view/block-view.component
 import { PreferencesComponent } from './components/preferences/preferences.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { BalanceComponent } from './components/balance/balance.component';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import { DiagramComponent } from './shared/diagram/diagram.component';
+import stock from 'highcharts/modules/stock.src';
+import more from 'highcharts/highcharts-more.src';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true
 };
+
+export function highchartsModules() {
+  // apply Highcharts Modules to this array
+  return [stock, more];
+}
 
 @NgModule({
   declarations: [
@@ -61,6 +70,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PreferencesComponent,
     TransactionsComponent,
     BalanceComponent,
+    DiagramComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +82,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ChartModule
   ],
   entryComponents: [
     SendModalComponent,
@@ -89,7 +100,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } 
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

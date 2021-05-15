@@ -59,5 +59,9 @@ export class CoinMarketCupService extends AbstractPageDirective {
   public getCurrencyCoinCup(): Subject<CoinCupContent> {
     this.getCoinCup();
     return this.coinCupSubject;
-  } 
+  }
+
+  public getCoinHistory(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/coin_history`);
+  }
 }

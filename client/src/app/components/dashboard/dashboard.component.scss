@@ -133,6 +133,14 @@
     }
   }
 
+  .diagram__wrapper {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 550px));
+    grid-gap: 20px;
+    place-content: center;
+  }
+
   .diagram__buttons {
     display: flex;
     flex-wrap: wrap;
