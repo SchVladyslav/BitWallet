@@ -19,27 +19,32 @@
   </h3>
   <div class="currency__stats">
     <div class="currency__container currency__balance">
-      <h4 class="currency__name">
-        {{ currentCurrencyConfig.ticker }} Balance
-      </h4>
+      <h4 class="currency__name">{{ currentCurrencyConfig.ticker }} Balance</h4>
       <span class="currency__amount">{{ balance | currency: "USD" }}</span>
-      <p class="currency__state">
-        <span>-$50.24 (2.30)%</span>
-        today
+      <p
+        class="currency__state percent"
+        [ngClass]="{ down: currencyChange < 0 }"
+      >
+        {{ currencyChange | number: "1.1-2" }}%
+        <span>today</span>
       </p>
     </div>
     <div class="currency__container currency__price">
       <div>
         <h4 class="currency__name">{{ currentCurrencyConfig.ticker }} Price</h4>
-        <span class="currency__amount">$10,856.94</span>
-        <p class="currency__state">
-          <span>$529.27 (5.12)%</span>
-          this week
+        <span class="currency__amount">{{
+          currencyPrice | currency: "USD"
+        }}</span>
+        <p
+          class="currency__state percent"
+          [ngClass]="{ down: currencyChange < 0 }"
+        >
+          {{ currencyChange | number: "1.1-2" }}%
+          <span>this week</span>
         </p>
       </div>
-      <div class="stats">
-        <img src="../../../../assets/icons/graph.png">
-        <!-- current statisitc -->
+      <div class="currency__stats">
+        <app-diagram [height]="'100px'"></app-diagram>
       </div>
     </div>
   </div>

@@ -1,10 +1,7 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { RequestModalComponent } from 'src/app/components/modal/request-modal/request-modal.component';
 import { SendModalComponent } from 'src/app/components/modal/send-modal/send-modal.component';
-import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
-import { NotificationService } from 'src/app/services/notification.service';
 import { AbstractPageDirective } from 'src/app/shared/abstract-page/abstract-page.directive';
 import { NavigationList } from '../../../../interfaces/NavigationList';
 
@@ -13,7 +10,7 @@ import { NavigationList } from '../../../../interfaces/NavigationList';
   templateUrl: './site-layout.component.html',
   styleUrls: ['./site-layout.component.scss']
 })
-export class SiteLayoutComponent extends AbstractPageDirective implements AfterViewInit {
+export class SiteLayoutComponent extends AbstractPageDirective {
 
   public balance: number = 0;
   public spinnerName: string = 'asideSpinner';
@@ -27,15 +24,9 @@ export class SiteLayoutComponent extends AbstractPageDirective implements AfterV
   ];
 
   constructor(
-    private modalService: BsModalService,
-    private blockchainService: BlockchainService,
-    private spinner: NgxSpinnerService,
-    private notificationService: NotificationService,
+    private modalService: BsModalService
   ) {
     super()
-  }
-
-  ngAfterViewInit(): void {
   }
 
   public openSendModal(): void {

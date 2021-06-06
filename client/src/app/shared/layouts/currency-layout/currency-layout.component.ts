@@ -6,6 +6,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { BlockchainService } from '../../../services/blockchain/blockchain.service'
 import { AbstractPageDirective } from '../../abstract-page/abstract-page.directive';
 import { CurrencyConfig } from '../../../helpers/currency.config';
+import { CoinMarketCupService } from 'src/app/services/coinmarketcup/coinmarketcup.service';
+import { CoinCupContent } from 'src/app/interfaces/CoinCup.interface';
 
 @Component({
   selector: 'app-currency-layout',
@@ -16,10 +18,12 @@ export class CurrencyLayoutComponent extends AbstractPageDirective implements On
 
   public currentCurrencyConfig: ICurrencyConfig;
   private currencyName: string;
+  public currencyPrice: number;
+  public currencyChange: number;
 
   constructor(
     private blockchainService: BlockchainService,
-    private notificationService: NotificationService,
+    private coinMarketCupService: CoinMarketCupService,
     private router: Router
   ) {
     super();
@@ -28,16 +32,8 @@ export class CurrencyLayoutComponent extends AbstractPageDirective implements On
   ngOnInit(): void {
     this.currencyName = this.router.url.slice(1).toUpperCase();
     this.setCurrentCurrencyName();
-    // .pipe(takeUntil(this.destroy$))
-    // .subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //   },
-    //   (error) => {
-        // this.spinner.hide();
-        // this.notificationService.show(error.error.message, 'error');
-    //   }
-    // )
+    this.currencyPrice = this.coinMarketCupService.coinCup[this.currencyName].price;
+    this.currencyChange = this.coinMarketCupService.coinCup[this.currencyName].change;
   }
 
   private setCurrentCurrencyName(): void {
@@ -47,5 +43,4 @@ export class CurrencyLayoutComponent extends AbstractPageDirective implements On
   get balance(): number {
     return this.blockchainService.getBalanceByCurrency(this.currencyName);
   }
-
 }

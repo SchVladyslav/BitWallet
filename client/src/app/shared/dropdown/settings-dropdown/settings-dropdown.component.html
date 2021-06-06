@@ -1,14 +1,12 @@
-<div class="settings-dropdown" dropdown>
-  <button id="button-animated" type="button" aria-controls="dropdown-animated" dropdownToggle>
+<div class="settings-dropdown" >
+  <button type="button" (click)="toggleDropdown()">
     <img src="../../../assets/icons/svg/icon-Settings.svg" alt="Settings" />
   </button>
 
   <div
-    id="dropdown-animated"
     class="settings-dropdown__menu"
     role="menu"
-    aria-labelledby="button-animated"
-    *dropdownMenu
+    *ngIf="dropdownVisible"
   >
     <ul class="dropdown__list">
       <li>

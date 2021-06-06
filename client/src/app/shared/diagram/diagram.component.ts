@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StockChart } from 'angular-highcharts';
 import { SeriesAreaOptions } from 'highcharts';
 import { takeUntil } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { AbstractPageDirective } from '../abstract-page/abstract-page.directive'
 })
 export class DiagramComponent extends AbstractPageDirective implements OnInit {
 
+  @Input() height: string;
   stockChart: StockChart;
 
   constructor(private coinMarketCupService: CoinMarketCupService) { 
@@ -20,6 +21,13 @@ export class DiagramComponent extends AbstractPageDirective implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.height) {
+      fullAreaChartOptions.chart.height = this.height;
+      fullAreaChartOptions.rangeSelector = {
+        enabled: false
+      }
+    }
+
     this.coinMarketCupService
     .getCoinHistory()
     .pipe(takeUntil(this.destroy$))

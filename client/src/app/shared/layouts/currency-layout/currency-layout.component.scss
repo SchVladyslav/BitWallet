@@ -44,7 +44,7 @@
 		display: flex;
 		position: relative;
 
-		margin: 15px 0;
+		margin-bottom: 30px;
 	}
 
 	&__container {
@@ -81,10 +81,31 @@
 	&__state {
 		font-size: 14px;
 		font-weight: 600;
-    color: $secondary-color-text;
+		color: $up-color;
 
 		span {
-			color: $down-color;
+			color: $secondary-color-text;
 		}
+
+		.percent {
+			font-size: 1rem;
+			font-weight: 600;
+			margin-right: 2rem;
+			color: $up-color;
+		}
+	
+		.percent::before {
+			content: "+";
+			position: absolute;
+			left: -5%;
+		}
+
+		.down.percent::before {
+      content: "";
+    }
+
+    .down {
+      color: $down-color;
+    }
 	}
 }
