@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, takeUntil } from 'rxjs/operators';
 import { AbstractPageDirective } from 'src/app/shared/abstract-page/abstract-page.directive';
 import { CoinCup, CoinCupContent, CoinCupData } from '../../interfaces/CoinCup.interface';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +61,15 @@ export class CoinMarketCupService extends AbstractPageDirective {
     return this.coinCupSubject;
   }
 
-  public getCoinHistory(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/coin_history`);
+  public getCoinHistoryBTC(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/coin_history_btc`);
+  }
+
+  public getCoinHistoryETH(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/coin_history_eth`);
+  }
+
+  public getCoinHistoryXRP(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/coin_history_xrp`);
   }
 }

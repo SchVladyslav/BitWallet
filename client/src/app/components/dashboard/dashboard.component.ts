@@ -20,6 +20,7 @@ export class DashboardComponent extends AbstractPageDirective implements OnInit 
   public currentCrypto: CoinContent;
   public sectionSpinner: string = 'sectionSpinner';
   public calculatedPrice: number[] = [];
+  public coinName: string = 'BTC';
 
   constructor(
     private blockchainService: BlockchainService,
@@ -52,6 +53,7 @@ export class DashboardComponent extends AbstractPageDirective implements OnInit 
   }
 
   public selectedCrypto(coinName: string): void {
+    this.coinName = coinName;
     this.getCryptoCurrencyPrice(coinName);
   }
 

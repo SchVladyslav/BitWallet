@@ -77,17 +77,17 @@ export class BlockchainService extends AbstractPageDirective {
         item.transactions
         .forEach(ts => {
           if (ts.currency === Currency.BTC) {
-            ts.toAddress === this.walletKeys.publicKey
+            ts.toAddress === this.walletKeys?.publicKey
             ? this.btcBalance += Number(ts.amount)
             : this.btcBalance -= Number(ts.amount);
           }
           if (ts.currency === Currency.ETH) {
-            ts.toAddress === this.walletKeys.publicKey
+            ts.toAddress === this.walletKeys?.publicKey
             ? this.ethBalance += Number(ts.amount)
             : this.ethBalance -= Number(ts.amount);
           }
           if (ts.currency === Currency.XRP) {
-            ts.toAddress === this.walletKeys.publicKey
+            ts.toAddress === this.walletKeys?.publicKey
             ? this.xrpBalance += Number(ts.amount)
             : this.xrpBalance -= Number(ts.amount);
           }
