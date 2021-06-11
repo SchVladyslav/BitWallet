@@ -1,5 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CryptoList } from 'src/app/interfaces/CryptoList';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ICryptoList } from 'src/app/interfaces/CryptoList';
+import { Currency } from 'src/app/interfaces/WalletType.interface';
+import { BlockchainService } from 'src/app/services/blockchain/blockchain.service';
+import { CryptoList } from '../../helpers/select-currency.config';
 
 @Component({
   selector: 'app-select-currency',
@@ -8,34 +11,41 @@ import { CryptoList } from 'src/app/interfaces/CryptoList';
 })
 export class SelectCurrencyComponent implements OnInit {
 
-  cryptoList: CryptoList[];
-  selectedCrypto: string;
-  @ViewChild('img', {static: false}) image;
+  cryptoList: ICryptoList[];
+  currentGlobalCurrency: string;
+  @Input() walletType: string;
+  @ViewChild('img', { static: false }) image;
+  @Output() selectedCrypto: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private blockchainService: BlockchainService) { }
 
   ngOnInit(): void {
-    this.cryptoList = [
-      {name: 'Bitcoin', ticker: 'BTC', imageUrl: '../../../assets/icons/svg/icon-Bitcoin.svg'}, 
-      {name: 'Ether', ticker: 'ETH', imageUrl: '../../../assets/icons/svg/icon-Ethereum.svg'},
-      {name: 'Ripple', ticker: 'XRP', imageUrl: '../../../assets/icons/svg/icon-Xrp.svg'}
-    ];
+    this.cryptoList = CryptoList;
   }
 
   ngAfterViewInit() {
-    this.image.nativeElement.src = this.cryptoList[0].imageUrl;
+    if (this.image && !Currency[this.currentGlobalCurrency]) {
+      this.image.nativeElement.src = this.cryptoList[0].imageUrl;
+    }
+    this.initAndChangeSelectFromGlobal();
+  }
+
+  private initAndChangeSelectFromGlobal(): void {
+    this.currentGlobalCurrency = this.blockchainService.currentCurrencyLocation();
+    this.selectedCrypto.emit(Currency[this.currentGlobalCurrency] || 'BTC');
+    this.changeCryptoImage(Currency[this.currentGlobalCurrency]);
   }
 
   selectChangeHandler($event: any): void {
-    this.selectedCrypto = $event.target.value;
-    this.changeCryptoImage(this.selectedCrypto);
+    this.selectedCrypto.emit($event.target.value);
+    this.changeCryptoImage($event.target.value);
   }
 
-  changeCryptoImage(selectedCrypto) {
+  changeCryptoImage(selectedCrypto: string) {
     for (const crypto of this.cryptoList) {
-     if (selectedCrypto === crypto.ticker) {
-      this.image.nativeElement.src = crypto.imageUrl;
-     }
+      if (selectedCrypto === crypto.ticker) {
+        this.image.nativeElement.src = crypto.imageUrl;
+      }
     }
   }
 }

@@ -3,18 +3,23 @@ $main-color-medium: #0D3578;
 $main-color-light: #0A84FF;
 $main-color-button: #0C6CF2;
 $main-color-text: #E8E9EB;
+$main-color-black-grey: rgb(53, 63, 82);
 
 $secondary-color-dark: #353F52;
 $secondary-color-medium: #4d535e;
 $secondary-color-grey: #C4C6CC;
 $secondary-color-grey-dark:#677184;
 $secondary-color-link: #90AEC9;
+$secondary-color-text: rgb(103, 113, 132);
 
 $hover-color-blue: #D8EBFD;
 $hover-color-orange: #FFF0DE;
 $hover-color-purple: #E4E2F7;
 $hover-color-green: #D9E5E0;
 
-$up-color: #1cd16e;
+$up-color: rgb(0, 178, 107);
 
-$down-color: #e60012;
+$down-color: rgb(255, 68, 58);
+
+$arrow-south-east: '\2198';
+$arrow-north-east: '\2197';

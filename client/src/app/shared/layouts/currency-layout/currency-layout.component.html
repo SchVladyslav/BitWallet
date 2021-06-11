@@ -1,0 +1,55 @@
+<section class="currency">
+  <div class="currency__header-wrapper">
+    <img
+      class="icon"
+      src="{{ currentCurrencyConfig.img }}"
+      alt="{{ currentCurrencyConfig.name }}"
+    />
+    <h2 class="currency__title">{{ currentCurrencyConfig.name }}</h2>
+  </div>
+  <h3 class="currency__subtitle">
+    {{ currentCurrencyConfig.description }}
+    <a
+      href="https://www.blockchain.com/learning-portal/bitcoin-faq"
+      target="_blank"
+      class="currency__subtitle-link"
+    >
+      Learn more.</a
+    >
+  </h3>
+  <div class="currency__stats">
+    <div class="currency__container currency__balance">
+      <h4 class="currency__name">{{ currentCurrencyConfig.ticker }} Balance</h4>
+      <span class="currency__amount">{{ balance | currency: "USD" }}</span>
+      <p
+        class="currency__state percent"
+        [ngClass]="{ down: currencyChange < 0 }"
+      >
+        {{ currencyChange | number: "1.1-2" }}%
+        <span>today</span>
+      </p>
+    </div>
+    <div class="currency__container currency__price">
+      <div>
+        <h4 class="currency__name">{{ currentCurrencyConfig.ticker }} Price</h4>
+        <span class="currency__amount">{{
+          currencyPrice | currency: "USD"
+        }}</span>
+        <p
+          class="currency__state percent"
+          [ngClass]="{ down: currencyChange < 0 }"
+        >
+          {{ currencyChange | number: "1.1-2" }}%
+          <span>this week</span>
+        </p>
+      </div>
+      <div class="currency__stats">
+        <app-diagram
+          [currencyName]="currencyName"
+          [height]="'100px'"
+        ></app-diagram>
+      </div>
+    </div>
+  </div>
+  <app-blockchain-viewer></app-blockchain-viewer>
+</section>

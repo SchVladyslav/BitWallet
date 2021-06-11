@@ -1,13 +1,5 @@
-	
-<main class="main">
-	<form class="form">
-		<h2 class="form__title">Welcome Back!</h2>
-		<label class="form__label" for="id">Wallet ID</label>
-		<input class="form__input" id="id" type="text">
-		<p class="form__text">Your Wallet ID can be found at the bottom of any email we’ve ever sent you. Need a reminder?</p>
-		<label class="form__label" for="pass">Password</label>
-		<input class="form__input" id="pass" type="password">
-		<button class="form__button" type="submit">Log In</button>
-	</form>
-	<a class="main__link" routerLink="/signup">Don't have a wallet? <span>Sign Up</span></a>
-</main>
+<div class="card">
+	<h2 class="card__title">Welcome Back!</h2>
+	<app-login-form></app-login-form>
+</div>
+<a class="card__link" routerLink="/signup">Don't have a wallet? <span>Sign Up</span></a>

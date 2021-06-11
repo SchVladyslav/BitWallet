@@ -1,0 +1,1 @@
+export const COIN_CUP_API_KEY = '2a0041bf-7f48-46ef-8253-2b46628ac9dd';

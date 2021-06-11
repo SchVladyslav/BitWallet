@@ -1,41 +1,106 @@
 <div class="page-wrapper">
   <header class="header">
-		<h1 class="header__title">Bit Wallet</h1>
-		<nav class="header__nav nav">
-			<ul class="nav__list">
-				<li>
-					<button type="button" class="secondary__button" routerLink="/login">
-						Log In
-					</button>
-				</li>
-				<li>
-					<button type="button" class="main__button main__button-sm"  routerLink="/signup">
-						Sign Up
-					</button>
-				</li>
-			</ul>
-		</nav>
+    <app-logo></app-logo>
+    <nav class="header__nav nav">
+      <ul class="nav__list">
+        <li>
+          <button type="button" class="secondary__button" routerLink="/login">
+            Log In
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="main__button main__button-sm"
+            routerLink="/signup"
+          >
+            Sign Up
+          </button>
+        </li>
+      </ul>
+    </nav>
   </header>
   <main class="main">
-		<h2 class="main__title">The World's Most Popular Way to Buy, Hold, and Use Crypto</h2>
-		<h4 class="main__subtitle">Trusted by 53M Wallets - with Over $620 Billion in Transactions - Since 2013</h4>
-		<button type="button" class="main__button" routerLink="/login">Get Started</button>
-		<ul class="currency__list">
-			<li>
-				<img class="icon" src="../../../assets/icons/svg/icon-Bitcoin.svg">
-				<span class="count">$11,475.97</span>
-				<span class="percent">0.53%</span>
-			</li>
-			<li>
-				<img class="icon" src="../../../assets/icons/svg/icon-Ethereum.svg">
-				<span class="count">$396.97</span>
-				<span class="percent">2.12%</span>
-			</li>
-			<li>
-				<img class="icon" src="../../../assets/icons/svg/icon-Xrp.svg">
-				<span class="count">$0.030</span>
-				<span class="percent">0.46%</span>
-			</li>
-		</ul>
+    <h2 class="main__title">
+      The World's Most Popular Way to Buy, Hold, and Use Crypto
+    </h2>
+    <h4 class="main__subtitle">
+      Trusted by 53M Wallets - with Over $620 Billion in Transactions - Since
+      2013
+    </h4>
+    <button type="button" class="main__button" routerLink="/login">
+      Get Started
+    </button>
+    <ul class="currency__list" *ngIf="coinCup">
+      <li>
+        <div class="currency__name">
+          <img class="icon" src="../../../assets/icons/svg/icon-Bitcoin.svg" />
+          <h4>{{coinCup.BTC.name}}</h4>
+          <span>{{coinCup.BTC.symbol}}</span>
+        </div>
+        <div class="currency__price">
+          <span class="price">{{
+            coinCup.BTC.price | currency: "USD"
+          }}</span>
+        </div>
+        <div class="currency__chart">
+          <span
+            class="percent"
+            [ngClass]="{ down: coinCup.BTC.change < 0 }"
+          >
+            {{ coinCup.BTC.change | number: "1.1-2" }}%
+          </span>
+          <div class="chart">
+            <img src="../../../assets/icons/graph.png" />
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="currency__name">
+          <img class="icon" src="../../../assets/icons/svg/icon-Ethereum.svg" />
+          <h4>{{coinCup.ETH.name}}</h4>
+          <span>{{coinCup.ETH.symbol}}</span>
+        </div>
+        <div class="currency__price">
+          <span class="price">{{
+            coinCup.ETH.price | currency: "USD"
+          }}</span>
+        </div>
+        <div class="currency__chart">
+          <span
+            class="percent"
+            [ngClass]="{ down: coinCup.ETH.change < 0 }"
+          >
+            {{ coinCup.ETH.change | number: "1.1-2" }}%
+          </span>
+          <div class="chart">
+            <img src="../../../assets/icons/graph.png" />
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="currency__name">
+          <img class="icon" src="../../../assets/icons/svg/icon-Xrp.svg" />
+          <h4>{{coinCup.XRP.name}}</h4>
+          <span>{{coinCup.XRP.symbol}}</span>
+        </div>
+        <div class="currency__price">
+          <span class="price">{{
+            coinCup.XRP.price | currency: "USD"
+          }}</span>
+        </div>
+        <div class="currency__chart">
+          <span
+            class="percent"
+            [ngClass]="{ down: coinCup.XRP.change < 0 }"
+          >
+            {{ coinCup.XRP.change | number: "1.1-2" }}%
+          </span>
+          <div class="chart">
+            <img src="../../../assets/icons/graph.png" />
+          </div>
+        </div>
+      </li>
+    </ul>
   </main>
 </div>

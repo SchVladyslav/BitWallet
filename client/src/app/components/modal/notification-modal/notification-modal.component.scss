@@ -1,0 +1,44 @@
+@import '../../../../assets/scss/abstracts/vars.scss';
+
+.notification {
+    position: absolute;
+    top: 60px;
+    right: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 370px;
+    width: 100%;
+
+    padding: 20px 15px;
+    border-radius: 8px;
+    border-left: 6px solid $main-color-button;
+    box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 8px;
+
+    background-color: #fff;
+    z-index: 100;
+    
+    &__message {
+        font-size: 15px;
+        font-weight: 600;
+        color: #50596b;
+    }
+
+    &__close {
+        margin-left: 30px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #50596b;
+        
+        cursor: pointer;
+    }
+}
+
+.error {
+    border-left-color: $down-color;
+}
+
+.success {
+    border-left-color: $up-color;
+}

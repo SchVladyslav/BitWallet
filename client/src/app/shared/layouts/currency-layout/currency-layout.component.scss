@@ -1,0 +1,111 @@
+@import '../../../../assets/scss/abstracts/vars.scss';
+
+.currency {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	.icon {
+    height: 38px;
+    width: 38px;
+    cursor: pointer;
+	}
+	
+	&__header-wrapper {
+		display: flex;
+		align-items: center;
+
+		margin-bottom: 10px;
+	}
+
+	&__title {
+		font-size: 32px;
+		margin-left: 10px;
+	}
+
+	&__subtitle {
+		font-size: 16px;
+		font-weight: 600;
+    letter-spacing: 0.6px;
+    color: $secondary-color-grey-dark;
+		transition: 0.3s ease;
+
+		&-link {
+			color: $main-color-button;
+
+			&:hover {
+				color: $main-color-medium;
+				text-decoration: underline;
+			}
+		}
+	}
+		
+	&__stats {
+		display: flex;
+		position: relative;
+
+		margin-bottom: 30px;
+	}
+
+	&__container {
+		display: flex;
+		padding: 10px;
+		background-color: #fff;
+		border-radius: 8px;
+		border: 1px solid #ccc;
+	}
+
+	&__balance {
+		flex-direction: column;
+		width: 320px;
+    min-width: 320px;
+    z-index: 2;
+    margin-right: 30px;
+	}
+
+	&__price {
+		flex-direction: row;
+		width: 100%;
+	}
+
+	&__name {
+		color: $secondary-color-text;
+		font-weight: 500;
+	}
+
+	&__amount {
+		font-weight: 600;
+		font-size: 24px;
+	}
+
+	&__state {
+		font-size: 14px;
+		font-weight: 600;
+		color: $up-color;
+
+		span {
+			color: $secondary-color-text;
+		}
+
+		.percent {
+			font-size: 1rem;
+			font-weight: 600;
+			margin-right: 2rem;
+			color: $up-color;
+		}
+	
+		.percent::before {
+			content: "+";
+			position: absolute;
+			left: -5%;
+		}
+
+		.down.percent::before {
+      content: "";
+    }
+
+    .down {
+      color: $down-color;
+    }
+	}
+}

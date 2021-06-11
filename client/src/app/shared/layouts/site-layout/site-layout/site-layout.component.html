@@ -1,1 +1,50 @@
-<router-outlet></router-outlet>
+<div class="page-wrapper">
+  <header class="header">
+    <app-logo></app-logo>
+    <div class="header__nav-wrapper">
+      <nav class="nav">
+        <ul class="nav__list">
+          <li (click)="openSendModal()">
+            <img
+              class="icon"
+              src="../../../../../assets/icons/svg/icon-Send.svg"
+              alt="Send"
+            />
+            <a class="item__text">Send</a>
+          </li>
+          <li (click)="openRequestModal()">
+            <img
+              class="icon"
+              src="../../../../../assets/icons/svg/icon-Request.svg"
+              alt="Request"
+            />
+            <a class="item__text">Request</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__settings-wrapper" >
+        <app-settings-dropdown></app-settings-dropdown>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <aside class="aside">
+      <app-balance></app-balance>		
+      <ul class="crypto__list">
+        <li
+          *ngFor="let link of links"
+          [routerLink]="[link.url]"
+          routerLinkActive="active"
+          class="{{ link.ticker }}"
+        >
+          <img class="icon" src="{{ link.img }}" alt="{{ link.name }}" />
+          <p>{{ link.name }}</p>
+        </li>
+      </ul>
+    </aside>
+    <section class="components-wrapper">
+      <app-notification-modal></app-notification-modal>
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

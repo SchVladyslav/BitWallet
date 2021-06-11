@@ -1,121 +1,105 @@
-<div class="page-wrapper">
-	<header class="header">
-		<div class="header__logo-wrapper">
-			<img class="icon" src="../../../assets//icons/svg/icon-Logo.svg">
-			<h1 class="header__title">BitWallet.com</h1>
-		</div>
-		<div class="header__nav-wrapper">
-			<nav class="nav">
-				<ul class="nav__list">
-					<li (click)="openSendModal()">
-						<img class="icon" src="../../../assets//icons/svg/icon-Send.svg" alt="Send">
-						<a class="item__text">Send</a>
-					</li>
-					<li (click)="openRequestModal()">
-						<img class="icon" src="../../../assets//icons/svg/icon-Request.svg" alt="Request">
-						<a class="item__text">Request</a>
-					</li>
-				</ul>
-			</nav>
-			<div class="header__settings-wrapper">
-				<img (click)="openDropdown()" src="../../../assets//icons/svg/icon-Settings.svg" alt="Settings">
-			</div>
-		</div>
-	</header>
-	<main class="main">
-		<aside class="aside">
-			<h6 class="aside__title">Total Balance</h6>
-			<span class="aside__balance">$4,160.63</span>
-			<ul class="crypto__list">
-				<li class="dashboard" routerLinkActive="active">
-					<img class="icon" src="../../../assets/icons/svg/icon-dashboard.svg" alt="Dashboard">
-					<p>Dashboard</p>
-				</li>
-				<li class="btc">
-					<img class="icon" src="../../../assets/icons/svg/icon-Bitcoin.svg" alt="BTC">
-					<p>Bitcoin</p>
-				</li>
-				<li class="eth">
-					<img class="icon" src="../../../assets/icons/svg/icon-Ethereum.svg" alt="ETH">
-					<p>Ether</p>
-				</li>
-				<li class="xrp">
-					<img class="icon" src="../../../assets/icons/svg/icon-Xrp.svg" alt="XRP">
-					<p>XRP</p>
-				</li>
-			</ul>
-		</aside>
+<div class="content-wrapper">
+  <section class="balance">
+    <app-balance></app-balance>
+    <ul class="crypto__list">
+      <li class="btc">
+        <div class="item__wrapper">
+          <img
+            class="icon"
+            src="../../../assets/icons/svg/icon-Bitcoin.svg"
+            alt="BTC"
+          />
+          <p>Bitcoin</p>
+        </div>
+        <div class="details__wrapper">
+          <span class="value">{{ calculatedPrice[0] | currency: "USD" }}</span>
+          <span class="amount">{{ btcBalance.toFixed(6) }} BTC</span>
+        </div>
+      </li>
+      <li class="eth">
+        <div class="item__wrapper">
+          <img
+            class="icon"
+            src="../../../assets/icons/svg/icon-Ethereum.svg"
+            alt="ETH"
+          />
+          <p>Ethereum</p>
+        </div>
+        <div class="details__wrapper">
+          <span class="value">{{ calculatedPrice[1] | currency: "USD" }}</span>
+          <span class="amount">{{ ethBalance.toFixed(6) }} ETH</span>
+        </div>
+      </li>
+      <li class="xrp">
+        <div class="item__wrapper">
+          <img
+            class="icon"
+            src="../../../assets/icons/svg/icon-Xrp.svg"
+            alt="XRP"
+          />
+          <p>XRP</p>
+        </div>
+        <div class="details__wrapper">
+          <span class="value">{{ calculatedPrice[2] | currency: "USD" }}</span>
+          <span class="amount">{{ xrpBalance.toFixed(6) }} XRP</span>
+        </div>
+      </li>
+    </ul>
+    <ngx-spinner
+      bdColor="rgba(255, 255, 255, 0.9)"
+      color="rgb(10, 132, 255)"
+      size="medium"
+      type="ball-clip-rotate"
+      [fullScreen]="false"
+      [name]="sectionSpinner"
+    ></ngx-spinner>
+  </section>
 
-		<section class="balance">
-			<div class="title__wrapper">
-				<h4 class="balance__title">Total Balance</h4>
-				<span class="balance__value">$4,160.63</span>
-			</div>
-			<ul class="crypto__list">
-				<li class="btc">
-					<div class="item__wrapper">
-						<img class="icon" src="../../../assets/icons/svg/icon-Bitcoin.svg" alt="BTC">
-						<p>Bitcoin</p>
-					</div>
-					<div class="details__wrapper">
-						<span class="value">$2,339.26</span>
-						<span class="amount">0.21664133 BTC</span>
-					</div>
-				</li>
-				<li class="eth">
-					<div class="item__wrapper">
-						<img class="icon" src="../../../assets/icons/svg/icon-Ethereum.svg" alt="ETH">
-						<p>Ether</p>
-					</div>
-					<div class="details__wrapper">
-						<span class="value">$1,642.35</span>
-						<span class="amount">4.03377597 ETH</span>
-					</div>
-				</li>
-				<li class="xrp">
-					<div class="item__wrapper">
-						<img class="icon" src="../../../assets/icons/svg/icon-Xrp.svg" alt="XRP">
-						<p>XRP</p>
-					</div>
-					<div class="details__wrapper">
-						<span class="value">$539.26</span>
-						<span class="amount">1,144 XRP</span>
-					</div>
-				</li>
-			</ul>
-		</section>
-
-		<section class="diagram">
-			<div class="diagram__title">
-				<app-select-currency></app-select-currency>
-				<h5 class="diagram__title">Current price</h5>
-				<span class="diagram__price">$11,272.89</span>
-			</div>
-
-			<div class="diagram__wrapper">
-				<ul class="time__list">
-					<li>
-						<button class="button" type="button">Day</button>
-					</li>
-					<li>
-						<button class="button" type="button">Week</button>
-					</li>
-					<li>
-						<button class="button" type="button">Month</button>
-					</li>
-					<li>
-						<button class="button" type="button">Year</button>
-					</li>
-					<li>
-						<button class="button" type="button">All</button>
-					</li>
-				</ul>
-
-				<div class="diagram__buttons">
-					<button class="button" type="button">Buy Bitcoin</button>
-					<button class="button" type="button">Swap Bitcoin</button>
-				</div>
-		</div>
-		</section>
-	</main>
+  <section class="diagram">
+    <div class="diagram__title">
+      <app-select-currency
+        (selectedCrypto)="selectedCrypto($event)"
+      ></app-select-currency>
+      <h5 class="diagram__title">Current price</h5>
+      <span class="diagram__price">{{
+        currentCrypto?.price | currency: "USD"
+      }}</span>
+    </div>
+    <div class="diagram__wrapper">
+      <app-diagram [currencyName]="coinName"></app-diagram>
+      <!-- <ul class="time__list">
+        <li>
+          <button class="button" type="button">Day</button>
+        </li>
+        <li>
+          <button class="button" type="button">Week</button>
+        </li>
+        <li>
+          <button class="button" type="button">Month</button>
+        </li>
+        <li>
+          <button class="button" type="button">Year</button>
+        </li>
+        <li>
+          <button class="button" type="button">All</button>
+        </li>
+      </ul> -->
+      <!-- <div class="diagram__buttons">
+        <button class="button" type="button">
+          Buy {{ currentCrypto?.name }}
+        </button>
+        <button class="button" type="button">
+          Swap {{ currentCrypto?.name }}
+        </button>
+      </div> -->
+    </div>
+    <ngx-spinner
+      bdColor="rgba(255, 255, 255, 0.9)"
+      color="rgb(10, 132, 255)"
+      size="medium"
+      type="ball-clip-rotate"
+      [fullScreen]="false"
+      [name]="sectionSpinner"
+    ></ngx-spinner>
+  </section>
 </div>

@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogInComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

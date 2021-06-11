@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,34 @@ import { RequestModalComponent } from './components/modal/request-modal/request-
 import { SettingsDropdownComponent } from './shared/dropdown/settings-dropdown/settings-dropdown.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout/auth-layout.component';
 import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout/site-layout.component';
+import { LogoComponent } from './shared/logo/logo/logo.component';
+import { SelectLangComponent } from './shared/select-lang/select-lang/select-lang.component';
+import { LoginFormComponent } from './shared/forms/login-form/login-form.component';
+import { SignupFormComponent } from './shared/forms/signup-form/signup-form.component';
+import { Interceptor } from './interceptor/interceptor';
+import { NotificationModalComponent } from './components/modal/notification-modal/notification-modal.component';
+import { CurrencyLayoutComponent } from './shared/layouts/currency-layout/currency-layout.component';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BlockchainViewerComponent } from './components/blockchain-viewer/blockchain-viewer.component';
+import { BlockViewComponent } from './components/block-view/block-view.component';
+import { PreferencesComponent } from './components/preferences/preferences.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { BalanceComponent } from './components/balance/balance.component';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import { DiagramComponent } from './shared/diagram/diagram.component';
+import stock from 'highcharts/modules/stock.src';
+import more from 'highcharts/highcharts-more.src';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  wheelPropagation: true
+};
+
+export function highchartsModules() {
+  // apply Highcharts Modules to this array
+  return [stock, more];
+}
 
 @NgModule({
   declarations: [
@@ -27,19 +58,52 @@ import { SiteLayoutComponent } from './shared/layouts/site-layout/site-layout/si
     RequestModalComponent,
     SettingsDropdownComponent,
     AuthLayoutComponent,
-    SiteLayoutComponent
+    SiteLayoutComponent,
+    LogoComponent,
+    SelectLangComponent,
+    LoginFormComponent,
+    SignupFormComponent,
+    NotificationModalComponent,
+    CurrencyLayoutComponent,
+    BlockchainViewerComponent,
+    BlockViewComponent,
+    PreferencesComponent,
+    TransactionsComponent,
+    BalanceComponent,
+    DiagramComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    PerfectScrollbarModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
+    ChartModule
   ],
   entryComponents: [
     SendModalComponent,
     RequestModalComponent,
-    SettingsDropdownComponent
+    SettingsDropdownComponent,
+    NotificationModalComponent
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: Interceptor
+    },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    },
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } 
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

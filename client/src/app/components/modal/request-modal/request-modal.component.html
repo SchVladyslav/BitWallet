@@ -1,33 +1,124 @@
 <div class="modal__wrapper">
-	<header class="modal__header">
-		<div class="modal__header-wrapper">
-			<img class="icon" src="../../../../assets/icons/svg/icon-Request.svg">
-			<h1 class="modal__header-title">Request Bitcoin</h1>
-		</div>
-		<button class="modal__header-close" (click)="closeModal()">X</button>
-	</header>
-	<main class="modal">
-		<div class="block-wrapper">
-			<div class="modal__block-wrapper">
-				<label class="modal__label">Currency</label>
-				<app-select-currency></app-select-currency>
-			</div>
-			<div class="modal__block-wrapper">
-				<label class="modal__label">Receive To</label>
-				<app-select-currency></app-select-currency>
-			</div>
-		</div>
-		<label class="modal__label" for="address">Address</label>
-		<input class="modal__input" id="address" type="text"/>
-		<label class="modal__label" for="amount">Amount</label>
-		<div class="modal__amount-wrapper">
-			<input class="modal__input modal__amount" id="amount" type="text" placeholder="$0.00">
-			<span class="modal__sign">=</span>
-			<input class="modal__input modal__currency" type="text" placeholder="0">
-		</div>
-		<label class="modal__label" for="desc">Description</label>
-		<textarea class="modal__input modal__description" id="desc" rows="3" placeholder="What's this transaction for? (optional)"></textarea>
-		<button class="modal__button">Done</button>
-	</main>
+  <header class="modal__header">
+    <div class="modal__header-wrapper">
+      <img class="icon" src="../../../../assets/icons/svg/icon-Request-blue.svg" />
+      <h1 class="modal__header-title">Request Bitcoin</h1>
+    </div>
+    <a class="close" (click)="closeModal()"></a>
+  </header>
+  <form [formGroup]="requestForm" class="modal">
+    <div class="block-wrapper">
+      <div class="modal__block-wrapper">
+        <label class="modal__label">Currency</label>
+        <app-select-currency (selectedCrypto)="selectedCryptoCurrency($event)"></app-select-currency>
+      </div>
+      <div class="modal__block-wrapper">
+        <label class="modal__label">Receive To</label>
+        <app-select-currency></app-select-currency>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="label__group">
+        <label class="form__label" for="address">Address</label>
+        <span
+          *ngIf="
+            requestForm.get('fromAddress').invalid &&
+            requestForm.get('fromAddress').touched
+          "
+          class="form__validation"
+        >
+          <span *ngIf="requestForm.get('fromAddress').errors['required']"
+            >Required</span
+          >
+          <span *ngIf="requestForm.get('fromAddress').errors['minlength']">
+            Required
+            {{
+              requestForm.get("fromAddress").errors["minlength"][
+                "requiredLength"
+              ]
+            }}
+            characters. Now
+            {{
+              requestForm.get("fromAddress").errors["minlength"]["actualLength"]
+            }}
+          </span>
+					<span *ngIf="requestForm.get('toAddress').errors['maxlength']">
+            Max characters
+            {{ requestForm.get('toAddress').errors['maxlength']['requiredLength'] }}
+          </span>
+        </span>
+      </div>
+      <input
+        formControlName="fromAddress"
+        class="modal__input"
+        id="address"
+        type="text"
+        [ngClass]="{
+          invalid:
+            requestForm.get('fromAddress').invalid &&
+            requestForm.get('fromAddress').touched
+        }"
+      />
+    </div>
+    <div class="form-group">
+      <div class="label__group">
+        <label class="form__label" for="amount">Amount</label>
+        <span
+          *ngIf="
+            requestForm.get('amount').invalid &&
+            requestForm.get('amount').touched
+          "
+          class="form__validation"
+        >
+          <span *ngIf="requestForm.get('amount').errors['required']"
+            >Required</span
+          >
+        </span>
+      </div>
+      <div class="modal__amount-wrapper">
+        <input
+          formControlName="amount"
+          class="modal__input modal__amount"
+          id="amount"
+          type="text"
+          (input)="onAmountOrCrypto($event)"
+          placeholder="$0.00"
+          [ngClass]="{
+            invalid:
+              requestForm.get('amount').invalid &&
+              requestForm.get('amount').touched
+          }"
+        />
+        <span class="modal__sign">=</span>
+        <input
+          formControlName="cryptoAmount"
+          class="modal__input modal__currency"
+          type="text"
+          (input)="onAmountOrCrypto($event)"
+          placeholder="0.1"
+					[ngClass]="{
+            invalid:
+              requestForm.get('amount').invalid &&
+              requestForm.get('amount').touched
+          }"
+        />
+      </div>
+    </div>
+    <label class="modal__label" for="desc">Description</label>
+    <textarea
+      formControlName="description"
+      class="modal__input modal__description"
+      id="desc"
+      rows="3"
+      placeholder="What's this transaction for? (optional)"
+    ></textarea>
+    <button
+      class="modal__button"
+      [disabled]="isRequestFormValid"
+      (click)="request()"
+    >
+      Done
+    </button>
+  </form>
 </div>
 <div class="bg-layout"></div>

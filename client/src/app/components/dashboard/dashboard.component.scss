@@ -1,271 +1,168 @@
-@import '../../../assets/scss/abstracts/vars.scss';
-@import '../../../assets/scss/abstracts/buttons.scss';
-
-.page-wrapper {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-
-	height: 100vh;
-	color: #fff;
-
-	overflow: hidden;
-}
+@import "../../../assets/scss/abstracts/vars.scss";
+@import "../../../assets/scss/abstracts/buttons.scss";
 
 .icon {
-	height: 24px;
-	width: 24px;
-	cursor: pointer;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
 }
 
-.header {
-	display: flex;
-	align-items: center;
-	min-height: 3.5rem;
-	padding: 0 30px;
-	background-color: $main-color-dark;
-	
-	&__title {
-		font-size: 18px;
-		margin-left: 10px;
-	}
-
-	.icon {
-		height: 16px;
-		width: 16px;
-	}
-
-	.nav {
-		transition: ease 0.3s;
-
-		&__list {
-			display: flex;
-
-			li {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				transition: ease 0.3s;
-			}
-
-			li + li {
-				margin-left: 10px;
-				padding: 0 10px;
-				border-left: 1px solid rgb(156, 156, 156);
-			}
-
-			a:hover {
-				color: $secondary-color-grey-dark;
-			}
-
-			.item__text {
-				margin-left: 10px;
-				font-size: 14px;
-				font-weight: 600;
-				color: $main-color-text;
-			}
-		}
-	}
-
-	&__nav-wrapper {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-left: 70px;
-	}
-
-	&__logo-wrapper,
-	&__settings-wrapper {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		cursor: pointer;
-	}
+.content-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
 
-.main {
-	display: flex;
-	padding: 20px 10px;
-	color: #000;
+.balance,
+.diagram {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: 24px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
 
-	.crypto__list {
-		li {
-			display: flex;
-			align-items: center;
-			padding: 10px 15px;
-			border-radius: 8px;
-			font-weight: 600;
-			color: $secondary-color-grey-dark;
-			transition: ease 0.3s;
-			cursor: pointer;
+:host {
+  ::ng-deep {
+    .total-balance {
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 0;
+    }
 
-			p {
-				margin-left: 10px;
-			}
-		}
-	}
+    .title {
+      font-size: 16px;
+    }
+  }
+}
 
-	.aside {
-		width: 100%;
-		max-width: 220px;
-		
-		&__title,
-		&__balance {
-			margin-left: 15px;
-		}
+.balance {
+  flex-direction: column;
 
-		&__title {
-			font-size: 12px;
-			color: $secondary-color-grey-dark;
-		}
+  &__title {
+    font-weight: 600;
+    color: $secondary-color-text;
+  }
 
-		&__balance {
-			font-size: 24px;
-			font-weight: 600;
-		}
+  .crypto__list {
+    .item__wrapper {
+      display: flex;
+      align-items: center;
+    }
 
-		.crypto__list {
-			margin-top: 10px;
-			
-			.dashboard:hover {
-				background-color: $hover-color-blue;
-			}
+    .item__wrapper {
+      p {
+        font-size: 20px;
+        font-weight: 600;
+        margin-left: 10px;
+      }
+    }
 
-			.btc:hover {
-				background-color: $hover-color-orange;
-			}
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+    }
 
-			.eth:hover {
-				background-color: $hover-color-purple;
-			}
+    li:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
 
-			.xrp:hover {
-				background-color: $hover-color-green;
-			}
+    li:last-child {
+      padding-bottom: 0;
+    }
 
-			li {				
-				& + li {
-					margin-top: 5px;
-				}
-			}
-		}
-	}
+    .icon {
+      width: 2.1rem;
+      height: 2.1rem;
+    }
 
-	.balance,
-	.diagram {
-		width: 100%;
-		max-width: 600px;
-		padding: 20px;
-		border: 1px solid #ccc;
-		border-radius: 8px;
-	}
+    .details__wrapper {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
 
-	.balance {
-		margin-left: 30px;
-		
-		.title__wrapper {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-		}
+      .value {
+        font-size: 16px;
+        font-weight: 600;
+      }
 
-		&__title {
-			color: $secondary-color-grey;
-		}
+      .amount {
+        font-size: 12px;
+        font-weight: 600;
+        color: $secondary-color-text;
+      }
+    }
+  }
 
-		.crypto__list {
+  &__value {
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
 
-			.item__wrapper {
-				display: flex;
-				align-items: center;
-			}
+.diagram {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-left: 30px;
 
-			li {
-				justify-content: space-between;
-				padding: 20px 0;
-			}
-			
-			li:not(:last-child) {
-				border-bottom: 1px solid #ccc
-			}
+  .time__list {
+    display: flex;
+    justify-content: center;
 
-			.icon {
-				width: 34px;
-				height: 34px;
-			}
+    .button {
+      @include button(6px, 8px, 10px, #fff);
+      color: $secondary-color-grey-dark;
+      border: 1px solid $secondary-color-grey-dark;
+    }
 
-			.details__wrapper {
-				display: flex;
-				flex-direction: column;
-				text-align: right;
+    .button:hover {
+      color: #fff;
+      background-color: $main-color-light;
+      border-color: $main-color-light;
+    }
 
-				.value {
-					font-size: 16px;
-				}
+    li + li {
+      margin-left: 10px;
+    }
+  }
 
-				.amount {
-					font-size: 12px;
-					color: $secondary-color-grey-dark;					
-				}
-			}
-		}
+  .diagram__wrapper {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 550px));
+    grid-gap: 20px;
+    place-content: center;
+  }
 
-		&__value {
-			font-size: 24px;
-			font-weight: 600;
-		}
-	}
+  .diagram__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
 
-	.diagram {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		text-align: center;
-		margin: 0 40px 0 30px;
+    .button {
+      width: 170px;
+      @include button(15px, 20px, 14px, $main-color-button);
+    }
 
-		.time__list {
-			display: flex;
-			justify-content: center;
+    .button + .button {
+      margin-left: 20px;
+    }
+  }
 
-			.button {
-				@include button(6px, 8px, 10px, #fff);
-				color: $secondary-color-grey-dark;
-				border: 1px solid $secondary-color-grey-dark;
-			}
+  &__title {
+    font-size: 10px;
+    color: $secondary-color-grey-dark;
+  }
 
-			.button:hover {
-				color: #fff;
-				background-color: $main-color-light;
-				border-color: $main-color-light;
-			}
-
-			li + li {
-				margin-left: 10px;
-			}
-		}
-
-		.diagram__buttons {
-			margin-top: 20px;
-			
-			.button {
-				@include button(15px, 40px, 14px, $main-color-button);
-			}
-
-			.button + .button {
-				margin-left: 20px;
-			}
-		}
-
-		&__title {
-			font-size: 10px;
-			color: $secondary-color-grey-dark;
-		}
-
-		&__price {
-			font-size: 26px;
-			color: $main-color-medium;
-		}
-	}
+  &__price {
+    font-size: 26px;
+    color: $main-color-medium;
+  }
 }

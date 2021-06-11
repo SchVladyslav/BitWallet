@@ -1,14 +1,20 @@
-<div class="modal__body">
-	<ul class="modal__list">
-		<li>
-			<button type="button">
-				Preferences
-			</button>
-		</li>
-		<li>
-			<button type="button">
-				Sign Out
-			</button>
-		</li>
-	</ul>
+<div class="settings-dropdown" >
+  <button type="button" (click)="toggleDropdown()">
+    <img src="../../../assets/icons/svg/icon-Settings.svg" alt="Settings" />
+  </button>
+
+  <div
+    class="settings-dropdown__menu"
+    role="menu"
+    *ngIf="dropdownVisible"
+  >
+    <ul class="dropdown__list">
+      <li>
+        <a (click)="preferences($event)">Preferences</a>
+      </li>
+      <li>
+        <a (click)="logout($event)">Log Out</a>
+      </li>
+    </ul>
+  </div>
 </div>

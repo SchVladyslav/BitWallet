@@ -1,1 +1,7 @@
 @import '../../../../assets/scss/components/modal/modal';
+@import '../../../../assets/scss/components/form/form';
+
+.label__group {
+  display: flex;
+  justify-content: space-between;
+}

@@ -6,10 +6,12 @@ const cors = require('cors');   // to process client with diff domain address
 const morgan = require('morgan'); // logging
 const authRoutes = require('./routes/auth');
 const analyticsRoutes = require('./routes/analytics');
-const keys = require('./config/keys');
+const blockchain = require('./routes/blockchain');
+const coinmarketcup = require('./routes/coinMarketCup');
+const keys = require('./helper/keys');
 const app = express();
 
-mongoose.connect(keys.MONGO_URI)
+mongoose.connect(keys.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     console.log('MongoDB is connected');
 })
@@ -20,10 +22,12 @@ require('./middleware/passport')(passport);
 
 app.use(morgan('dev'));
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/blockchain', blockchain);
+app.use('/api/coinmarketcup', coinmarketcup);
 
 module.exports = app;
